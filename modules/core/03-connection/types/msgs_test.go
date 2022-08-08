@@ -47,8 +47,7 @@ func (suite *MsgTestSuite) SetupTest() {
 
 	app := simapp.Setup(false)
 	db := dbm.NewMemDB()
-	dblog := log.NewNopLogger()
-	store := rootmulti.NewStore(db, dblog)
+	store := rootmulti.NewStore(db, log.NewNopLogger())
 	storeKey := storetypes.NewKVStoreKey("iavlStoreKey")
 
 	store.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, nil)
