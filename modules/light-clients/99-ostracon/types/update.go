@@ -8,8 +8,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/tendermint/tendermint/light"
-	tmtypes "github.com/tendermint/tendermint/types"
+	"github.com/line/ostracon/light"
+	tmtypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	commitmenttypes "github.com/cosmos/ibc-go/v5/modules/core/23-commitment/types"
@@ -37,7 +37,7 @@ import (
 // UpdateClient must only be used to update within a single revision, thus header revision number and trusted height's revision
 // number must be the same. To update to a new revision, use a separate upgrade path
 // Tendermint client validity checking uses the bisection algorithm described
-// in the [Tendermint spec](https://github.com/tendermint/spec/blob/master/spec/consensus/light-client.md).
+// in the [Tendermint spec](https://github.com/ostracon/spec/blob/master/spec/consensus/light-client.md).
 //
 // Misbehaviour Detection:
 // UpdateClient will detect implicit misbehaviour by enforcing certain invariants on any new update call and will return a frozen client.

@@ -6,7 +6,7 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	commitmenttypes "github.com/cosmos/ibc-go/v5/modules/core/23-commitment/types"
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
-	"github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	"github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 )
 

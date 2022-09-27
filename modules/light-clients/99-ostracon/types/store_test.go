@@ -9,7 +9,7 @@ import (
 	host "github.com/cosmos/ibc-go/v5/modules/core/24-host"
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
 	solomachinetypes "github.com/cosmos/ibc-go/v5/modules/light-clients/06-solomachine/types"
-	"github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	"github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 )
 

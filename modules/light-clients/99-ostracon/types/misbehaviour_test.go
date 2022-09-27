@@ -3,13 +3,13 @@ package types_test
 import (
 	"time"
 
-	"github.com/tendermint/tendermint/crypto/tmhash"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
+	"github.com/line/ostracon/crypto/tmhash"
+	tmproto "github.com/line/ostracon/proto/ostracon/types"
+	tmtypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
-	"github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	"github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	ibctestingmock "github.com/cosmos/ibc-go/v5/testing/mock"
 )

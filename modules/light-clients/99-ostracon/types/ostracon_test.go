@@ -6,13 +6,13 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	tmbytes "github.com/line/ostracon/libs/bytes"
+	tmproto "github.com/line/ostracon/proto/ostracon/types"
+	tmtypes "github.com/line/ostracon/types"
 	"github.com/stretchr/testify/suite"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
-	ibctmtypes "github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	ibctmtypes "github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	ibctestingmock "github.com/cosmos/ibc-go/v5/testing/mock"
 	"github.com/cosmos/ibc-go/v5/testing/simapp"

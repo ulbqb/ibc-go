@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	commitmenttypes "github.com/cosmos/ibc-go/v5/modules/core/23-commitment/types"
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
-	types "github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	types "github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	ibctestingmock "github.com/cosmos/ibc-go/v5/testing/mock"
 )
