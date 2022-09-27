@@ -16,6 +16,7 @@ import (
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
 	smtypes "github.com/cosmos/ibc-go/v5/modules/light-clients/06-solomachine/types"
 	ibctmtypes "github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	ibcoctypes "github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 )
 
 // MigrateStore performs in-place store migrations from SDK v0.40 of the IBC module to v1.0.0 of ibc-go.
@@ -97,6 +98,24 @@ func MigrateStore(ctx sdk.Context, storeKey storetypes.StoreKey, cdc codec.Binar
 			addConsensusMetadata(ctx, clientStore)
 
 			if err = ibctmtypes.PruneAllExpiredConsensusStates(ctx, clientStore, cdc, tmClientState); err != nil {
+				return err
+			}
+
+		case exported.Ostracon:
+			var clientState exported.ClientState
+			if err := cdc.UnmarshalInterface(bz, &clientState); err != nil {
+				return sdkerrors.Wrap(err, "failed to unmarshal client state bytes into ostracon client state")
+			}
+
+			ocClientState, ok := clientState.(*ibcoctypes.ClientState)
+			if !ok {
+				return sdkerrors.Wrap(clienttypes.ErrInvalidClient, "client state is not ostracon even though client id contains 99-ostracon")
+			}
+
+			// add iteration keys so pruning will be successful
+			addConsensusMetadata(ctx, clientStore)
+
+			if err = ibcoctypes.PruneAllExpiredConsensusStates(ctx, clientStore, cdc, ocClientState); err != nil {
 				return err
 			}
 

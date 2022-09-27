@@ -11,6 +11,7 @@ import (
 	host "github.com/cosmos/ibc-go/v5/modules/core/24-host"
 	"github.com/cosmos/ibc-go/v5/modules/core/exported"
 	ibctmtypes "github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
+	ibcoctypes "github.com/cosmos/ibc-go/v5/modules/light-clients/99-ostracon/types"
 )
 
 // MigrateGenesis accepts exported v1.0.0 IBC client genesis file and migrates it to:
@@ -121,6 +122,79 @@ func MigrateGenesis(cdc codec.BinaryCodec, clientGenState *types.GenesisState, g
 											metadata, // processed time
 											types.GenesisMetadata{
 												Key:   ibctmtypes.IterationKey(height),
+												Value: host.ConsensusStateKey(height),
+											})
+									}
+								}
+
+							}
+						}
+					}
+
+					// if we have metadata for unexipred consensus states, add it to consensusMetadata
+					if len(clientMetadata) != 0 {
+						clientsMetadata = append(clientsMetadata, types.IdentifiedGenesisMetadata{
+							ClientId:       client.ClientId,
+							ClientMetadata: clientMetadata,
+						})
+					}
+
+				case exported.Ostracon:
+					// only add non expired consensus states to new clientsConsensus
+					ocClientState, ok := client.ClientState.GetCachedValue().(*ibcoctypes.ClientState)
+					if !ok {
+						return nil, types.ErrInvalidClient
+					}
+
+					// collect unexpired consensus states
+					var unexpiredConsensusStates []types.ConsensusStateWithHeight
+					for _, consState := range clientConsensusStates.ConsensusStates {
+						tmConsState := consState.ConsensusState.GetCachedValue().(*ibcoctypes.ConsensusState)
+						if !ocClientState.IsExpired(tmConsState.Timestamp, genesisBlockTime) {
+							unexpiredConsensusStates = append(unexpiredConsensusStates, consState)
+						}
+					}
+
+					// if we found at least one unexpired consensus state, create a clientConsensusState
+					// and add it to clientsConsensus
+					if len(unexpiredConsensusStates) != 0 {
+						clientsConsensus = append(clientsConsensus, types.ClientConsensusStates{
+							ClientId:        client.ClientId,
+							ConsensusStates: unexpiredConsensusStates,
+						})
+					}
+
+					// collect metadata for unexpired consensus states
+					var clientMetadata []types.GenesisMetadata
+
+					// remove all expired tendermint consensus state metadata by adding only
+					// unexpired consensus state metadata
+					for _, consState := range unexpiredConsensusStates {
+						for _, identifiedGenMetadata := range clientGenState.ClientsMetadata {
+							// look for metadata for current client
+							if identifiedGenMetadata.ClientId == client.ClientId {
+
+								// obtain height for consensus state being pruned
+								height := consState.Height
+
+								// iterate through metadata and find metadata for current unexpired height
+								// only unexpired consensus state metadata should be added
+								for _, metadata := range identifiedGenMetadata.ClientMetadata {
+									// the previous version of IBC only contained the processed time metadata
+									// if we find the processed time metadata for an unexpired height, add the
+									// iteration key and processed height keys.
+									if bytes.Equal(metadata.Key, ibcoctypes.ProcessedTimeKey(height)) {
+										clientMetadata = append(clientMetadata,
+											// set the processed height using the current self height
+											// this is safe, it may cause delays in packet processing if there
+											// is a non zero connection delay time
+											types.GenesisMetadata{
+												Key:   ibcoctypes.ProcessedHeightKey(height),
+												Value: []byte(selfHeight.String()),
+											},
+											metadata, // processed time
+											types.GenesisMetadata{
+												Key:   ibcoctypes.IterationKey(height),
 												Value: host.ConsensusStateKey(height),
 											})
 									}

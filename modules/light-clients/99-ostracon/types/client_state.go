@@ -50,7 +50,7 @@ func (cs ClientState) GetChainID() string {
 
 // ClientType is tendermint.
 func (cs ClientState) ClientType() string {
-	return exported.Tendermint
+	return exported.Ostracon
 }
 
 // GetLatestHeight returns latest block height.
