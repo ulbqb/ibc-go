@@ -4,8 +4,8 @@ import (
 	"time"
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmproto "github.com/line/ostracon/proto/ostracon/types"
+	tmtypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"

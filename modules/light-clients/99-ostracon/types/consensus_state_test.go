@@ -5,7 +5,7 @@ import (
 
 	commitmenttypes "github.com/cosmos/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/cosmos/ibc-go/v3/modules/core/exported"
-	"github.com/cosmos/ibc-go/v3/modules/light-clients/07-tendermint/types"
+	"github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
 )
 
 func (suite *TendermintTestSuite) TestConsensusStateValidateBasic() {
