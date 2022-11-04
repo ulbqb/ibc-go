@@ -229,8 +229,6 @@ github.com/coinbase/rosetta-sdk-go v0.8.3 h1:IYqd+Ser5NVh0s7p8p2Ir82iCvi75E1l0NH
 github.com/coinbase/rosetta-sdk-go v0.8.3/go.mod h1:ChOHc+BNq7zqJDDkui0DA124GOvlAiRbdgAc1U9GMDQ=
 github.com/coinbase/rosetta-sdk-go/types v1.0.0 h1:jpVIwLcPoOeCR6o1tU+Xv7r5bMONNbHU7MuEHboiFuA=
 github.com/coinbase/rosetta-sdk-go/types v1.0.0/go.mod h1:eq7W2TMRH22GTW0N0beDnN931DW0/WOI1R2sdHNHG4c=
-github.com/confio/ics23/go v0.9.0 h1:cWs+wdbS2KRPZezoaaj+qBleXgUk5WOQFMP3CQFGTr4=
-github.com/confio/ics23/go v0.9.0/go.mod h1:4LPZ2NYqnYIVRklaozjNR1FScgDJ2s5Xrp+e/mYVRak=
 github.com/coniks-sys/coniks-go v0.0.0-20180722014011-11acf4819b71 h1:MFLTqgfJclmtaQ1SRUrWwmDX/1UBok3XWUethkJ2swQ=
 github.com/coniks-sys/coniks-go v0.0.0-20180722014011-11acf4819b71/go.mod h1:TrHYHH4Wze7v7Hkwu1MH1W+mCPQKM+gs+PicdEV14o8=
 github.com/containerd/console v1.0.3/go.mod h1:7LqA/THxQ86k76b8c/EMSiaJ3h1eZkMkXar0TQ1gf3U=
@@ -249,6 +247,8 @@ github.com/coreos/pkg v0.0.0-20160727233714-3ac0863d7acf/go.mod h1:E3G3o1h8I7cfc
 github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f/go.mod h1:E3G3o1h8I7cfcXa63jLwjI0eiQQMgzzUDFVpN/nH/eA=
 github.com/cosmos/btcutil v1.0.5 h1:t+ZFcX77LpKtDBhjucvnOH8C2l2ioGsBNEQ3jef8xFk=
 github.com/cosmos/btcutil v1.0.5/go.mod h1:IyB7iuqZMJlthe2tkIFL33xPyzbFYP0XVdS8P5lUPis=
+github.com/cosmos/cosmos-sdk/ics23/go v0.8.0 h1:iKclrn3YEOwk4jQHT2ulgzuXyxmzmPczUalMwW4XH9k=
+github.com/cosmos/cosmos-sdk/ics23/go v0.8.0/go.mod h1:2a4dBq88TUoqoWAU5eu0lGvpFP3wWDPgdHPargtyw30=
 github.com/cosmos/go-bip39 v0.0.0-20180819234021-555e2067c45d/go.mod h1:tSxLoYXyBmiFeKpvmq4dzayMdCjCnu8uqmCysIGBT2Y=
 github.com/cosmos/go-bip39 v1.0.0 h1:pcomnQdrdH22njcAatO0yWojsUnCO3y2tNoV1cb6hHY=
 github.com/cosmos/go-bip39 v1.0.0/go.mod h1:RNJv0H/pOIVgxw6KS7QeX2a0Uo0aKUlfhZ4xuwvCdJw=
