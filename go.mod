@@ -2,7 +2,7 @@ go 1.20
 
 module github.com/cosmos/ibc-go/v4
 
-replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+retract [v4.0.0, v4.1.0] // depends on SDK version without dragonberry fix
 
 require (
 	github.com/Finschia/finschia-sdk v0.47.1-0.20230725074611-f8840edecbaa
@@ -129,4 +129,11 @@ require (
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.6 // indirect
+)
+
+replace (
+	// dragonberry replace for ics23
+	github.com/confio/ics23/go => github.com/cosmos/cosmos-sdk/ics23/go v0.8.0
+
+	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 )
