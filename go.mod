@@ -131,9 +131,4 @@ require (
 	nhooyr.io/websocket v1.8.6 // indirect
 )
 
-replace (
-	// dragonberry replace for ics23
-	github.com/confio/ics23/go => github.com/cosmos/cosmos-sdk/ics23/go v0.8.0
-
-	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
-)
+replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
