@@ -1,12 +1,12 @@
 package types
 
 import (
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	codectypes "github.com/line/lbm-sdk/codec/types"
+	sdk "github.com/line/lbm-sdk/types"
+	sdkerrors "github.com/line/lbm-sdk/types/errors"
 
-	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
-	"github.com/cosmos/ibc-go/v3/modules/core/exported"
+	host "github.com/line/ibc-go/v3/modules/core/24-host"
+	"github.com/line/ibc-go/v3/modules/core/exported"
 )
 
 // message types for the IBC client
@@ -30,6 +30,7 @@ var (
 )
 
 // NewMsgCreateClient creates a new MsgCreateClient instance
+//
 //nolint:interfacer
 func NewMsgCreateClient(
 	clientState exported.ClientState, consensusState exported.ConsensusState, signer string,
@@ -103,6 +104,7 @@ func (msg MsgCreateClient) UnpackInterfaces(unpacker codectypes.AnyUnpacker) err
 }
 
 // NewMsgUpdateClient creates a new MsgUpdateClient instance
+//
 //nolint:interfacer
 func NewMsgUpdateClient(id string, header exported.Header, signer string) (*MsgUpdateClient, error) {
 	anyHeader, err := PackHeader(header)
@@ -228,6 +230,7 @@ func (msg MsgUpgradeClient) UnpackInterfaces(unpacker codectypes.AnyUnpacker) er
 }
 
 // NewMsgSubmitMisbehaviour creates a new MsgSubmitMisbehaviour instance.
+//
 //nolint:interfacer
 func NewMsgSubmitMisbehaviour(clientID string, misbehaviour exported.Misbehaviour, signer string) (*MsgSubmitMisbehaviour, error) {
 	anyMisbehaviour, err := PackMisbehaviour(misbehaviour)

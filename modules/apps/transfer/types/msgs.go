@@ -3,11 +3,11 @@ package types
 import (
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdk "github.com/line/lbm-sdk/types"
+	sdkerrors "github.com/line/lbm-sdk/types/errors"
 
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
+	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
+	host "github.com/line/ibc-go/v3/modules/core/24-host"
 )
 
 // msg types
@@ -16,6 +16,7 @@ const (
 )
 
 // NewMsgTransfer creates a new MsgTransfer instance
+//
 //nolint:interfacer
 func NewMsgTransfer(
 	sourcePort, sourceChannel string,

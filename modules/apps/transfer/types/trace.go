@@ -7,12 +7,12 @@ import (
 	"sort"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmtypes "github.com/tendermint/tendermint/types"
+	sdk "github.com/line/lbm-sdk/types"
+	sdkerrors "github.com/line/lbm-sdk/types/errors"
+	ocbytes "github.com/line/ostracon/libs/bytes"
+	octypes "github.com/line/ostracon/types"
 
-	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
+	host "github.com/line/ibc-go/v3/modules/core/24-host"
 )
 
 // ParseDenomTrace parses a string with the ibc prefix (denom trace) and the base denomination
@@ -20,8 +20,8 @@ import (
 //
 // Examples:
 //
-// 	- "portidone/channelidone/uatom" => DenomTrace{Path: "portidone/channelidone", BaseDenom: "uatom"}
-// 	- "uatom" => DenomTrace{Path: "", BaseDenom: "uatom"}
+//   - "portidone/channelidone/uatom" => DenomTrace{Path: "portidone/channelidone", BaseDenom: "uatom"}
+//   - "uatom" => DenomTrace{Path: "", BaseDenom: "uatom"}
 func ParseDenomTrace(rawDenom string) DenomTrace {
 	denomSplit := strings.Split(rawDenom, "/")
 
@@ -41,7 +41,7 @@ func ParseDenomTrace(rawDenom string) DenomTrace {
 // Hash returns the hex bytes of the SHA256 hash of the DenomTrace fields using the following formula:
 //
 // hash = sha256(tracePath + "/" + baseDenom)
-func (dt DenomTrace) Hash() tmbytes.HexBytes {
+func (dt DenomTrace) Hash() ocbytes.HexBytes {
 	hash := sha256.Sum256([]byte(dt.GetFullDenomPath()))
 	return hash[:]
 }
@@ -143,8 +143,8 @@ func (t Traces) Sort() Traces {
 // ValidatePrefixedDenom checks that the denomination for an IBC fungible token packet denom is correctly prefixed.
 // The function will return no error if the given string follows one of the two formats:
 //
-//  - Prefixed denomination: '{portIDN}/{channelIDN}/.../{portID0}/{channelID0}/baseDenom'
-//  - Unprefixed denomination: 'baseDenom'
+//   - Prefixed denomination: '{portIDN}/{channelIDN}/.../{portID0}/{channelID0}/baseDenom'
+//   - Unprefixed denomination: 'baseDenom'
 func ValidatePrefixedDenom(denom string) error {
 	denomSplit := strings.Split(denom, "/")
 	if denomSplit[0] == denom && strings.TrimSpace(denom) != "" {
@@ -162,8 +162,8 @@ func ValidatePrefixedDenom(denom string) error {
 
 // ValidateIBCDenom validates that the given denomination is either:
 //
-//  - A valid base denomination (eg: 'uatom' or 'gamm/pool/1' as in https://github.com/cosmos/ibc-go/issues/894)
-//  - A valid fungible token representation (i.e 'ibc/{hash}') per ADR 001 https://github.com/cosmos/ibc-go/blob/main/docs/architecture/adr-001-coin-source-tracing.md
+//   - A valid base denomination (eg: 'uatom' or 'gamm/pool/1' as in https://github.com/cosmos/ibc-go/issues/894)
+//   - A valid fungible token representation (i.e 'ibc/{hash}') per ADR 001 https://github.com/cosmos/ibc-go/blob/main/docs/architecture/adr-001-coin-source-tracing.md
 func ValidateIBCDenom(denom string) error {
 	if err := sdk.ValidateDenom(denom); err != nil {
 		return err
@@ -189,13 +189,13 @@ func ValidateIBCDenom(denom string) error {
 }
 
 // ParseHexHash parses a hex hash in string format to bytes and validates its correctness.
-func ParseHexHash(hexHash string) (tmbytes.HexBytes, error) {
+func ParseHexHash(hexHash string) (ocbytes.HexBytes, error) {
 	hash, err := hex.DecodeString(hexHash)
 	if err != nil {
 		return nil, err
 	}
 
-	if err := tmtypes.ValidateHash(hash); err != nil {
+	if err := octypes.ValidateHash(hash); err != nil {
 		return nil, err
 	}
 
