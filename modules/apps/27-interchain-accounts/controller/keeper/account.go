@@ -3,6 +3,7 @@ package keeper
 import (
 	sdk "github.com/line/lbm-sdk/types"
 	sdkerrors "github.com/line/lbm-sdk/types/errors"
+	authtypes "github.com/line/lbm-sdk/x/auth/types"
 
 	icatypes "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/types"
 	channeltypes "github.com/line/ibc-go/v3/modules/core/04-channel/types"
@@ -10,11 +11,10 @@ import (
 )
 
 // RegisterInterchainAccount is the entry point to registering an interchain account.
-// It generates a new port identifier using the owner address, connection identifier,
-// and counterparty connection identifier. It will bind to the port identifier and
-// call 04-channel 'ChanOpenInit'. An error is returned if the port identifier is
-// already in use. Gaining access to interchain accounts whose channels have closed
-// cannot be done with this function. A regular MsgChanOpenInit must be used.
+// It generates a new port identifier using the owner address. It will bind to the
+// port identifier and call 04-channel 'ChanOpenInit'. An error is returned if the port
+// identifier is already in use. Gaining access to interchain accounts whose channels
+// have closed cannot be done with this function. A regular MsgChanOpenInit must be used.
 func (k Keeper) RegisterInterchainAccount(ctx sdk.Context, connectionID, owner string) error {
 	portID, err := icatypes.NewControllerPortID(owner)
 	if err != nil {
@@ -57,7 +57,7 @@ func (k Keeper) RegisterInterchainAccount(ctx sdk.Context, connectionID, owner s
 		return err
 	}
 
-	msg := channeltypes.NewMsgChannelOpenInit(portID, string(versionBytes), channeltypes.ORDERED, []string{connectionID}, icatypes.PortID, icatypes.ModuleName)
+	msg := channeltypes.NewMsgChannelOpenInit(portID, string(versionBytes), channeltypes.ORDERED, []string{connectionID}, icatypes.PortID, authtypes.NewModuleAddress(icatypes.ModuleName).String())
 	handler := k.msgRouter.Handler(msg)
 
 	res, err := handler(ctx, msg)
