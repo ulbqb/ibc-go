@@ -9,7 +9,7 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
-	types "github.com/line/ibc-go/v3/modules/core/02-client/types"
+	types "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 	types1 "github.com/line/lbm-sdk/codec/types"
 	query "github.com/line/lbm-sdk/types/query"
 	_ "google.golang.org/genproto/googleapis/api/annotations"

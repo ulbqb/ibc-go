@@ -6,12 +6,12 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	v100 "github.com/line/ibc-go/v3/modules/core/02-client/legacy/v100"
-	"github.com/line/ibc-go/v3/modules/core/02-client/types"
-	host "github.com/line/ibc-go/v3/modules/core/24-host"
-	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
-	ibctesting "github.com/line/ibc-go/v3/testing"
+	v100 "github.com/cosmos/ibc-go/v3/modules/core/02-client/legacy/v100"
+	"github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
+	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
+	"github.com/cosmos/ibc-go/v3/modules/core/exported"
+	ibcoctypes "github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibctesting "github.com/cosmos/ibc-go/v3/testing"
 )
 
 type LegacyTestSuite struct {
