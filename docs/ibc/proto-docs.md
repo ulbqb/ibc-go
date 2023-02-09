@@ -3448,12 +3448,10 @@ trusted validator set at the TrustedHeight.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| `signed_header` | [ostracon.types.SignedHeader](#ostracon.types.SignedHeader) |  |  |
-| `validator_set` | [ostracon.types.ValidatorSet](#ostracon.types.ValidatorSet) |  |  |
-| `voter_set` | [ostracon.types.VoterSet](#ostracon.types.VoterSet) |  |  |
+| `signed_header` | [tendermint.types.SignedHeader](#tendermint.types.SignedHeader) |  |  |
+| `validator_set` | [tendermint.types.ValidatorSet](#tendermint.types.ValidatorSet) |  |  |
 | `trusted_height` | [ibc.core.client.v1.Height](#ibc.core.client.v1.Height) |  |  |
-| `trusted_validators` | [ostracon.types.ValidatorSet](#ostracon.types.ValidatorSet) |  |  |
-| `trusted_voters` | [ostracon.types.VoterSet](#ostracon.types.VoterSet) |  |  |
+| `trusted_validators` | [tendermint.types.ValidatorSet](#tendermint.types.ValidatorSet) |  |  |
 
 
 

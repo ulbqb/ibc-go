@@ -3,10 +3,11 @@ package keeper_test
 import (
 	"testing"
 
-	sdk "github.com/line/lbm-sdk/types"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
+	sdk "github.com/line/lbm-sdk/types"
 
 	"github.com/cosmos/ibc-go/v3/modules/core/05-port/keeper"
 	"github.com/cosmos/ibc-go/v3/testing/simapp"
@@ -28,7 +29,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 	isCheckTx := false
 	app := simapp.Setup(isCheckTx)
 
-	suite.ctx = app.BaseApp.NewContext(isCheckTx, ocproto.Header{})
+	suite.ctx = app.BaseApp.NewContext(isCheckTx, tmproto.Header{})
 	suite.keeper = &app.IBCKeeper.PortKeeper
 }
 

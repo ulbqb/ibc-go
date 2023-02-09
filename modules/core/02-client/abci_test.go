@@ -3,10 +3,11 @@ package client_test
 import (
 	"testing"
 
-	upgradetypes "github.com/line/lbm-sdk/x/upgrade/types"
-	abci "github.com/line/ostracon/abci/types"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
+	upgradetypes "github.com/line/lbm-sdk/x/upgrade/types"
+	ocabci "github.com/line/ostracon/abci/types"
 
 	client "github.com/cosmos/ibc-go/v3/modules/core/02-client"
 	"github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
@@ -74,7 +75,7 @@ func (suite *ClientTestSuite) TestBeginBlockerConsensusState() {
 	store.Set(upgradetypes.PlanKey(), bz)
 
 	nextValsHash := []byte("nextValsHash")
-	newCtx := suite.chainA.GetContext().WithBlockHeader(ocproto.Header{
+	newCtx := suite.chainA.GetContext().WithBlockHeader(tmproto.Header{
 		Height:             suite.chainA.GetContext().BlockHeight(),
 		NextValidatorsHash: nextValsHash,
 	})
@@ -82,7 +83,7 @@ func (suite *ClientTestSuite) TestBeginBlockerConsensusState() {
 	err := suite.chainA.GetSimApp().UpgradeKeeper.SetUpgradedClient(newCtx, plan.Height, []byte("client state"))
 	suite.Require().NoError(err)
 
-	req := abci.RequestBeginBlock{Header: newCtx.BlockHeader()}
+	req := ocabci.RequestBeginBlock{Header: newCtx.BlockHeader()}
 	suite.chainA.App.BeginBlock(req)
 
 	// plan Height is at ctx.BlockHeight+1

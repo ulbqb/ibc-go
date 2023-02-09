@@ -150,20 +150,8 @@ func QueryOstraconHeader(clientCtx client.Context) (ibcoctypes.Header, int64, er
 		return ibcoctypes.Header{}, 0, err
 	}
 
-	page = 0
-	count = 10_000
-	voters, err := node.Voters(context.Background(), &height, &page, &count)
-	if err != nil {
-		return ibcoctypes.Header{}, 0, err
-	}
-
 	protoCommit := commit.SignedHeader.ToProto()
 	protoValset, err := octypes.NewValidatorSet(validators.Validators).ToProto()
-	if err != nil {
-		return ibcoctypes.Header{}, 0, err
-	}
-
-	protoVoterSet, err := octypes.WrapValidatorsToVoterSet(voters.Voters).ToProto()
 	if err != nil {
 		return ibcoctypes.Header{}, 0, err
 	}
@@ -171,7 +159,6 @@ func QueryOstraconHeader(clientCtx client.Context) (ibcoctypes.Header, int64, er
 	header := ibcoctypes.Header{
 		SignedHeader: protoCommit,
 		ValidatorSet: protoValset,
-		VoterSet:     protoVoterSet,
 	}
 
 	return header, height, nil

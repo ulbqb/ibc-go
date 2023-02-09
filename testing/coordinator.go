@@ -6,7 +6,8 @@ import (
 	"testing"
 	"time"
 
-	abci "github.com/line/ostracon/abci/types"
+	ocabci "github.com/line/ostracon/abci/types"
+
 	"github.com/stretchr/testify/require"
 )
 
@@ -67,7 +68,7 @@ func (coord *Coordinator) UpdateTime() {
 // UpdateTimeForChain updates the clock for a specific chain.
 func (coord *Coordinator) UpdateTimeForChain(chain *TestChain) {
 	chain.CurrentHeader.Time = coord.CurrentTime.UTC()
-	chain.App.BeginBlock(abci.RequestBeginBlock{Header: chain.CurrentHeader})
+	chain.App.BeginBlock(ocabci.RequestBeginBlock{Header: chain.CurrentHeader})
 }
 
 // Setup constructs a OC client, connection, and channel on both chains provided. It will
@@ -190,7 +191,7 @@ func (coord *Coordinator) CommitBlock(chains ...*TestChain) {
 // CommitNBlocks commits n blocks to state and updates the block height by 1 for each commit.
 func (coord *Coordinator) CommitNBlocks(chain *TestChain, n uint64) {
 	for i := uint64(0); i < n; i++ {
-		chain.App.BeginBlock(abci.RequestBeginBlock{Header: chain.CurrentHeader})
+		chain.App.BeginBlock(ocabci.RequestBeginBlock{Header: chain.CurrentHeader})
 		chain.CommitBlock()
 		chain.NextBlock()
 		coord.IncrementTime()

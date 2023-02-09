@@ -5,13 +5,14 @@ import (
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
+	"github.com/stretchr/testify/suite"
+	abcitypes "github.com/tendermint/tendermint/abci/types"
+
 	sdk "github.com/line/lbm-sdk/types"
 	banktypes "github.com/line/lbm-sdk/x/bank/types"
 	capabilitytypes "github.com/line/lbm-sdk/x/capability/types"
-	abcitypes "github.com/line/ostracon/abci/types"
 	ocprotostate "github.com/line/ostracon/proto/ostracon/state"
 	ocstate "github.com/line/ostracon/state"
-	"github.com/stretchr/testify/suite"
 
 	"github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/types"

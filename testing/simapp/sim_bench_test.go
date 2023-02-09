@@ -5,9 +5,10 @@ import (
 	"os"
 	"testing"
 
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
 	simtypes "github.com/line/lbm-sdk/types/simulation"
 	"github.com/line/lbm-sdk/x/simulation"
-	tmproto "github.com/line/ostracon/proto/ostracon/types"
 )
 
 // Profile with:

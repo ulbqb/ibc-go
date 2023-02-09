@@ -101,7 +101,7 @@ func (cs ClientState) CheckMisbehaviourAndUpdateState(
 func checkMisbehaviourHeader(
 	clientState *ClientState, consState *ConsensusState, header *Header, currentTimestamp time.Time,
 ) error {
-	tmTrustedVoterSet, err := octypes.VoterSetFromProto(header.TrustedVoters)
+	tmTrustedValset, err := octypes.ValidatorSetFromProto(header.TrustedValidators)
 	if err != nil {
 		return sdkerrors.Wrap(err, "trusted validator set is not ostracon validator set type")
 	}
@@ -134,7 +134,7 @@ func checkMisbehaviourHeader(
 
 	// - ValidatorSet must have TrustLevel similarity with trusted FromValidatorSet
 	// - ValidatorSets on both headers are valid given the last trusted ValidatorSet
-	if err := tmTrustedVoterSet.VerifyCommitLightTrusting(
+	if err := tmTrustedValset.VerifyCommitLightTrusting(
 		chainID, tmCommit, clientState.TrustLevel.ToOstracon(),
 	); err != nil {
 		return sdkerrors.Wrapf(clienttypes.ErrInvalidMisbehaviour, "validator set in header has too much change from trusted validator set: %v", err)

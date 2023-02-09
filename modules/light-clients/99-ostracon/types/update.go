@@ -182,7 +182,7 @@ func checkValidity(
 		)
 	}
 
-	tmTrustedVoters, err := octypes.VoterSetFromProto(header.TrustedVoters)
+	tmTrustedVoters, err := octypes.ValidatorSetFromProto(header.TrustedValidators)
 	if err != nil {
 		return sdkerrors.Wrap(err, "trusted validator set in not ostracon validator set type")
 	}
@@ -192,7 +192,7 @@ func checkValidity(
 		return sdkerrors.Wrap(err, "signed header in not ostracon signed header type")
 	}
 
-	tmVoterSet, err := octypes.VoterSetFromProto(header.VoterSet)
+	tmVoterSet, err := octypes.ValidatorSetFromProto(header.ValidatorSet)
 	if err != nil {
 		return sdkerrors.Wrap(err, "validator set in not ostracon validator set type")
 	}
@@ -233,7 +233,7 @@ func checkValidity(
 	// - assert header timestamp is not past the trusting period
 	// - assert header timestamp is past latest stored consensus state timestamp
 	// - assert that a TrustLevel proportion of TrustedValidators signed new Commit
-	err = light.VerifyWithVoterSet(
+	err = light.Verify(
 		&signedHeader,
 		tmTrustedVoters, tmSignedHeader, tmVoterSet,
 		clientState.TrustingPeriod, currentTimestamp, clientState.MaxClockDrift, clientState.TrustLevel.ToOstracon(),

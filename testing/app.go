@@ -5,6 +5,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/require"
+	abci "github.com/tendermint/tendermint/abci/types"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	dbm "github.com/tendermint/tm-db"
+
 	"github.com/line/lbm-sdk/baseapp"
 	"github.com/line/lbm-sdk/client"
 	"github.com/line/lbm-sdk/codec"
@@ -16,12 +21,9 @@ import (
 	capabilitykeeper "github.com/line/lbm-sdk/x/capability/keeper"
 	stakingkeeper "github.com/line/lbm-sdk/x/staking/keeper"
 	stakingtypes "github.com/line/lbm-sdk/x/staking/types"
-	abci "github.com/line/ostracon/abci/types"
+	ocabci "github.com/line/ostracon/abci/types"
 	"github.com/line/ostracon/libs/log"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	octypes "github.com/line/ostracon/types"
-	"github.com/stretchr/testify/require"
-	dbm "github.com/tendermint/tm-db"
 
 	"github.com/cosmos/ibc-go/v3/modules/core/keeper"
 	"github.com/cosmos/ibc-go/v3/testing/simapp"
@@ -30,7 +32,7 @@ import (
 var DefaultTestingAppInit func() (TestingApp, map[string]json.RawMessage) = SetupTestingApp
 
 type TestingApp interface {
-	abci.Application
+	ocabci.Application
 
 	// ibc-go additions
 	GetBaseApp() *baseapp.BaseApp
@@ -131,8 +133,8 @@ func SetupWithGenesisValSet(t *testing.T, valSet *octypes.ValidatorSet, genAccs 
 	// commit genesis changes
 	app.Commit()
 	app.BeginBlock(
-		abci.RequestBeginBlock{
-			Header: ocproto.Header{
+		ocabci.RequestBeginBlock{
+			Header: tmproto.Header{
 				ChainID:            chainID,
 				Height:             app.LastBlockHeight() + 1,
 				AppHash:            app.LastCommitID().Hash,

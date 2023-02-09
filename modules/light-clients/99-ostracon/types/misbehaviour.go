@@ -3,8 +3,9 @@ package types
 import (
 	"time"
 
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	
 	sdkerrors "github.com/line/lbm-sdk/types/errors"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	octypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
@@ -64,14 +65,8 @@ func (misbehaviour Misbehaviour) ValidateBasic() error {
 	if misbehaviour.Header1.TrustedValidators == nil {
 		return sdkerrors.Wrap(ErrInvalidValidatorSet, "trusted validator set in Header1 cannot be empty")
 	}
-	if misbehaviour.Header1.TrustedVoters == nil {
-		return sdkerrors.Wrap(ErrInvalidVoterSet, "trusted voter set in Header1 cannot be empty")
-	}
 	if misbehaviour.Header2.TrustedValidators == nil {
 		return sdkerrors.Wrap(ErrInvalidValidatorSet, "trusted validator set in Header2 cannot be empty")
-	}
-	if misbehaviour.Header2.TrustedVoters == nil {
-		return sdkerrors.Wrap(ErrInvalidVoterSet, "trusted voter set in Header2 cannot be empty")
 	}
 	if misbehaviour.Header1.Header.ChainID != misbehaviour.Header2.Header.ChainID {
 		return sdkerrors.Wrap(clienttypes.ErrInvalidMisbehaviour, "headers must have identical chainIDs")
@@ -109,28 +104,28 @@ func (misbehaviour Misbehaviour) ValidateBasic() error {
 	}
 
 	if err := validCommit(misbehaviour.Header1.Header.ChainID, *blockID1,
-		misbehaviour.Header1.Commit, misbehaviour.Header1.VoterSet); err != nil {
+		misbehaviour.Header1.Commit, misbehaviour.Header1.ValidatorSet); err != nil {
 		return err
 	}
 	if err := validCommit(misbehaviour.Header2.Header.ChainID, *blockID2,
-		misbehaviour.Header2.Commit, misbehaviour.Header2.VoterSet); err != nil {
+		misbehaviour.Header2.Commit, misbehaviour.Header2.ValidatorSet); err != nil {
 		return err
 	}
 	return nil
 }
 
 // validCommit checks if the given commit is a valid commit from the passed-in validatorset
-func validCommit(chainID string, blockID octypes.BlockID, commit *ocproto.Commit, voterSet *ocproto.VoterSet) (err error) {
+func validCommit(chainID string, blockID octypes.BlockID, commit *tmproto.Commit, valSet *tmproto.ValidatorSet) (err error) {
 	tmCommit, err := octypes.CommitFromProto(commit)
 	if err != nil {
 		return sdkerrors.Wrap(err, "commit is not ostracon commit type")
 	}
-	tmVoterSet, err := octypes.VoterSetFromProto(voterSet)
+	tmValset, err := octypes.ValidatorSetFromProto(valSet)
 	if err != nil {
 		return sdkerrors.Wrap(err, "validator set is not ostracon validator set type")
 	}
 
-	if err := tmVoterSet.VerifyCommitLight(chainID, blockID, tmCommit.Height, tmCommit); err != nil {
+	if err := tmValset.VerifyCommitLight(chainID, blockID, tmCommit.Height, tmCommit); err != nil {
 		return sdkerrors.Wrap(clienttypes.ErrInvalidMisbehaviour, "voter set did not commit to header")
 	}
 

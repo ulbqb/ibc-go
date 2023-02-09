@@ -3,10 +3,11 @@ package ica_test
 import (
 	"testing"
 
-	"github.com/line/ostracon/libs/log"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
+
+	"github.com/line/ostracon/libs/log"
 
 	ica "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts"
 	controllertypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/controller/types"
@@ -36,7 +37,7 @@ func (suite *InterchainAccountsTestSuite) TestInitModule() {
 	appModule, ok := app.GetModuleManager().Modules[types.ModuleName].(ica.AppModule)
 	suite.Require().True(ok)
 
-	header := ocproto.Header{
+	header := tmproto.Header{
 		ChainID: "testchain",
 		Height:  1,
 		Time:    suite.coordinator.CurrentTime.UTC(),
@@ -99,7 +100,7 @@ func (suite *InterchainAccountsTestSuite) TestInitModule() {
 
 			// reset app state
 			app = simapp.NewSimApp(log.NewNopLogger(), dbm.NewMemDB(), nil, true, map[int64]bool{}, simapp.DefaultNodeHome, 5, simapp.MakeTestEncodingConfig(), simapp.EmptyAppOptions{})
-			header := ocproto.Header{
+			header := tmproto.Header{
 				ChainID: "testchain",
 				Height:  1,
 				Time:    suite.coordinator.CurrentTime.UTC(),

@@ -54,12 +54,11 @@ func (suite *KeeperTestSuite) TestUpdateClientOstracon() {
 		return header
 	}
 	createPastUpdateFn := func(fillHeight, trustedHeight clienttypes.Height) *ibcoctypes.Header {
-		voterSet := octypes.WrapValidatorsToVoterSet(suite.chainB.Vals.Validators)
 		consState, found := suite.chainA.App.GetIBCKeeper().ClientKeeper.GetClientConsensusState(suite.chainA.GetContext(), path.EndpointA.ClientID, trustedHeight)
 		suite.Require().True(found)
 
 		return suite.chainB.CreateOCClientHeader(suite.chainB.ChainID, int64(fillHeight.RevisionHeight), trustedHeight, consState.(*ibcoctypes.ConsensusState).Timestamp.Add(time.Second*5),
-			suite.chainB.Vals, suite.chainB.Vals, voterSet, voterSet, suite.chainB.Signers)
+			suite.chainB.Vals, suite.chainB.Vals, suite.chainB.Signers)
 	}
 
 	cases := []struct {
@@ -442,9 +441,6 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 	// Create alternative validator set with only altVal
 	altValSet := octypes.NewValidatorSet([]*octypes.Validator{altVal})
 
-	bothVoterSet := octypes.WrapValidatorsToVoterSet(bothValSet.Validators)
-	voterSet := octypes.WrapValidatorsToVoterSet(valSet.Validators)
-
 	// Create signer array and ensure it is in same order as bothValSet
 	_, suiteVal := suite.valSet.GetByIndex(0)
 	bothSigners := ibctesting.CreateSortedSignerArray(altPrivVal, suite.privVal, altVal, suiteVal)
@@ -466,8 +462,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"trusting period misbehavior should pass",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -482,8 +478,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"time misbehavior should pass",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+5), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+5), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -498,8 +494,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"misbehavior at later height should pass",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, valSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -524,8 +520,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"misbehavior at later height with different trusted heights should pass",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -550,8 +546,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"misbehavior ValidateBasic fails: misbehaviour height is at same height as trusted height",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeight, altTime, bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeight, altTime, bothValSet, valSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -566,8 +562,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"trusted ConsensusState1 not found",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, altTime, bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, altTime, bothValSet, bothValSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, valSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -582,8 +578,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"trusted ConsensusState2 not found",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothVoterSet, voterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), testClientHeight, altTime, bothValSet, valSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(heightPlus5.RevisionHeight+1), heightPlus3, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -604,8 +600,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"client already is not active - client is frozen",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), bothValSet, bothValSet, bothSigners),
 				ClientId: clientID,
 			},
 			func() error {
@@ -623,8 +619,8 @@ func (suite *KeeperTestSuite) TestCheckMisbehaviourAndUpdateState() {
 		{
 			"misbehaviour check failed",
 			&ibcoctypes.Misbehaviour{
-				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothVoterSet, bothVoterSet, bothSigners),
-				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), altValSet, bothValSet, octypes.WrapValidatorsToVoterSet(altValSet.Validators), bothVoterSet, altSigners),
+				Header1:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, altTime, bothValSet, bothValSet, bothSigners),
+				Header2:  suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight+1), testClientHeight, suite.ctx.BlockTime(), altValSet, bothValSet, altSigners),
 				ClientId: clientID,
 			},
 			func() error {

@@ -4,12 +4,13 @@ import (
 	"encoding/json"
 	"log"
 
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
 	servertypes "github.com/line/lbm-sdk/server/types"
 	sdk "github.com/line/lbm-sdk/types"
 	slashingtypes "github.com/line/lbm-sdk/x/slashing/types"
 	"github.com/line/lbm-sdk/x/staking"
 	stakingtypes "github.com/line/lbm-sdk/x/staking/types"
-	tmproto "github.com/line/ostracon/proto/ostracon/types"
 )
 
 // ExportAppStateAndValidators exports the state of the application for a genesis
