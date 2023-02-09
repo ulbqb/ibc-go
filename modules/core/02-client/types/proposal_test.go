@@ -8,9 +8,9 @@ import (
 	govtypes "github.com/line/lbm-sdk/x/gov/types"
 	upgradetypes "github.com/line/lbm-sdk/x/upgrade/types"
 
-	"github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	ibcoctypes "github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+	"github.com/line/ibc-go/v3/modules/core/02-client/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 func (suite *TypesTestSuite) TestValidateBasic() {

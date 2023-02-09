@@ -12,11 +12,11 @@ import (
 	ocbytes "github.com/line/ostracon/libs/bytes"
 	octypes "github.com/line/ostracon/types"
 
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	ibcoctypes "github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
-	ibctestingmock "github.com/cosmos/ibc-go/v3/testing/mock"
-	"github.com/cosmos/ibc-go/v3/testing/simapp"
+	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
+	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
+	"github.com/line/ibc-go/v3/testing/simapp"
 )
 
 const (

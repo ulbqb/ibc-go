@@ -9,12 +9,12 @@ import (
 	upgradetypes "github.com/line/lbm-sdk/x/upgrade/types"
 	ocabci "github.com/line/ostracon/abci/types"
 
-	client "github.com/cosmos/ibc-go/v3/modules/core/02-client"
-	"github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	"github.com/cosmos/ibc-go/v3/modules/core/exported"
-	localhosttypes "github.com/cosmos/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+	client "github.com/line/ibc-go/v3/modules/core/02-client"
+	"github.com/line/ibc-go/v3/modules/core/02-client/types"
+	"github.com/line/ibc-go/v3/modules/core/exported"
+	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 type ClientTestSuite struct {

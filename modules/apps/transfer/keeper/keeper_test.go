@@ -8,8 +8,8 @@ import (
 	"github.com/line/ostracon/crypto"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+	"github.com/line/ibc-go/v3/modules/apps/transfer/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 type KeeperTestSuite struct {

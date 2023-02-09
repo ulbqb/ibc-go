@@ -11,10 +11,10 @@ import (
 	upgradekeeper "github.com/line/lbm-sdk/x/upgrade/keeper"
 	"github.com/stretchr/testify/suite"
 
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
-	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
+	ibchost "github.com/line/ibc-go/v3/modules/core/24-host"
+	ibckeeper "github.com/line/ibc-go/v3/modules/core/keeper"
+	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 type KeeperTestSuite struct {

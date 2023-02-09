@@ -27,7 +27,7 @@ import (
 	"github.com/line/ostracon/libs/log"
 	tmtypes "github.com/line/ostracon/types"
 
-	"github.com/cosmos/ibc-go/v3/testing/simapp/helpers"
+	"github.com/line/ibc-go/v3/testing/simapp/helpers"
 )
 
 // DefaultConsensusParams defines the default Tendermint consensus params used in

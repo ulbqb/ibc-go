@@ -8,14 +8,14 @@ import (
 	upgradetypes "github.com/line/lbm-sdk/x/upgrade/types"
 	octypes "github.com/line/ostracon/types"
 
-	"github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
-	commitmenttypes "github.com/cosmos/ibc-go/v3/modules/core/23-commitment/types"
-	"github.com/cosmos/ibc-go/v3/modules/core/exported"
-	localhosttypes "github.com/cosmos/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/cosmos/ibc-go/v3/modules/light-clients/99-ostracon/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
-	ibctestingmock "github.com/cosmos/ibc-go/v3/testing/mock"
+	"github.com/line/ibc-go/v3/modules/core/02-client/types"
+	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
+	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
+	"github.com/line/ibc-go/v3/modules/core/exported"
+	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
+	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 )
 
 func (suite *KeeperTestSuite) TestCreateClient() {

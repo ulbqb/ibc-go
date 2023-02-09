@@ -9,12 +9,12 @@ import (
 
 	"github.com/line/ostracon/libs/log"
 
-	ica "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts"
-	controllertypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/controller/types"
-	hosttypes "github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
-	"github.com/cosmos/ibc-go/v3/modules/apps/27-interchain-accounts/types"
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
-	"github.com/cosmos/ibc-go/v3/testing/simapp"
+	ica "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts"
+	controllertypes "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/controller/types"
+	hosttypes "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
+	"github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/types"
+	ibctesting "github.com/line/ibc-go/v3/testing"
+	"github.com/line/ibc-go/v3/testing/simapp"
 )
 
 type InterchainAccountsTestSuite struct {
