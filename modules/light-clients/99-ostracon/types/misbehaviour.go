@@ -126,7 +126,7 @@ func validCommit(chainID string, blockID octypes.BlockID, commit *tmproto.Commit
 	}
 
 	if err := tmValset.VerifyCommitLight(chainID, blockID, tmCommit.Height, tmCommit); err != nil {
-		return sdkerrors.Wrap(clienttypes.ErrInvalidMisbehaviour, "voter set did not commit to header")
+		return sdkerrors.Wrap(clienttypes.ErrInvalidMisbehaviour, "validator set did not commit to header")
 	}
 
 	return nil
