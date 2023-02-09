@@ -85,8 +85,8 @@ import (
 	authzkeeper "github.com/line/lbm-sdk/x/authz/keeper"
 	authzmodule "github.com/line/lbm-sdk/x/authz/module"
 
-	_ "github.com/line/lbm-sdk/client/docs/statik"
 	// unnamed import of statik for swagger UI support
+	_ "github.com/line/lbm-sdk/client/docs/statik"
 
 	ica "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts"
 	icacontroller "github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/controller"
