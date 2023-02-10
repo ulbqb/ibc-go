@@ -17,7 +17,7 @@ const (
 	Solomachine string = "06-solomachine"
 
 	// Ostracon is used to indicate that the client uses the Ostracon Consensus Algorithm.
-	Ostracon string = "99-ostracon"
+	Ostracon string = "07-tendermint"
 
 	// Localhost is the client type for a localhost client. It is also used as the clientID
 	// for the localhost client.
