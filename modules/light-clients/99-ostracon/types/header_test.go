@@ -3,7 +3,7 @@ package types_test
 import (
 	"time"
 
-	ocprotocrypto "github.com/line/ostracon/proto/ostracon/crypto"
+	"github.com/tendermint/tendermint/proto/tendermint/crypto"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
@@ -48,7 +48,7 @@ func (suite *OstraconTestSuite) TestHeaderValidateBasic() {
 			header.ValidatorSet = nil
 		}, false},
 		{"ValidatorSetFromProto failed", func() {
-			header.ValidatorSet.Validators[0].PubKey = ocprotocrypto.PublicKey{}
+			header.ValidatorSet.Validators[0].PubKey = crypto.PublicKey{}
 		}, false},
 		{"header validator hash does not equal hash of validator set", func() {
 			// use chainB's randomly generated validator set

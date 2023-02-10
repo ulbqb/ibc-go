@@ -2,6 +2,9 @@
 
 ## [Unreleased](https://github.com/line/ibc-go/tree/HEAD)
 
+### Features
+* [\#5](https://github.com/line/ibc-go/pull/5) apply the changes of lbm-sdk and ostracon proto
+
 ### Improvements
 * [\#1](https://github.com/line/ibc-go/pull/1) apply all changes of `x/ibc` in lbm-sdk until [lbm-sdk@0fbc2fcae6dba90fa80b815cf3219d6fcf46fc64](https://github.com/line/lbm-sdk/tree/0fbc2fcae6dba90fa80b815cf3219d6fcf46fc64)
 * [\#3](https://github.com/line/ibc-go/pull/3) bump up github.com/cosmos/ibc-go from v3.0.0 to v3.3.1

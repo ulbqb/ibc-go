@@ -5,15 +5,16 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
 	"github.com/line/lbm-sdk/baseapp"
 	"github.com/line/lbm-sdk/codec"
 	cryptocodec "github.com/line/lbm-sdk/crypto/codec"
 	sdk "github.com/line/lbm-sdk/types"
 	stakingtypes "github.com/line/lbm-sdk/x/staking/types"
 	ocbytes "github.com/line/ostracon/libs/bytes"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	octypes "github.com/line/ostracon/types"
-	"github.com/stretchr/testify/suite"
 
 	"github.com/line/ibc-go/v3/modules/core/02-client/keeper"
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
@@ -83,7 +84,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 	app := simapp.Setup(isCheckTx)
 
 	suite.cdc = app.AppCodec()
-	suite.ctx = app.BaseApp.NewContext(isCheckTx, ocproto.Header{Height: height, ChainID: testClientID, Time: now2})
+	suite.ctx = app.BaseApp.NewContext(isCheckTx, tmproto.Header{Height: height, ChainID: testClientID, Time: now2})
 	suite.keeper = &app.IBCKeeper.ClientKeeper
 	suite.privVal = ibctestingmock.NewPV()
 
@@ -95,8 +96,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 	validator := ibctesting.NewTestValidator(pubKey, 1)
 	suite.valSet = octypes.NewValidatorSet([]*octypes.Validator{validator})
 	suite.valSetHash = suite.valSet.Hash()
-	voterSet := octypes.WrapValidatorsToVoterSet(suite.valSet.Validators)
-	suite.header = suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeightMinus1, now2, suite.valSet, suite.valSet, voterSet, voterSet, []octypes.PrivValidator{suite.privVal})
+	suite.header = suite.chainA.CreateOCClientHeader(testChainID, int64(testClientHeight.RevisionHeight), testClientHeightMinus1, now2, suite.valSet, suite.valSet, []octypes.PrivValidator{suite.privVal})
 	suite.consensusState = ibcoctypes.NewConsensusState(suite.now, commitmenttypes.NewMerkleRoot([]byte("hash")), suite.valSetHash)
 
 	var validators stakingtypes.Validators
@@ -328,10 +328,9 @@ func (suite KeeperTestSuite) TestConsensusStateHelpers() {
 	nextState := ibcoctypes.NewConsensusState(suite.now, commitmenttypes.NewMerkleRoot([]byte("next")), suite.valSetHash)
 
 	testClientHeightPlus5 := types.NewHeight(0, height+5)
-	voterSet := octypes.WrapValidatorsToVoterSet(suite.valSet.Validators)
 
 	header := suite.chainA.CreateOCClientHeader(testClientID, int64(testClientHeightPlus5.RevisionHeight), testClientHeight, suite.header.Header.Time.Add(time.Minute),
-		suite.valSet, suite.valSet, voterSet, voterSet, []octypes.PrivValidator{suite.privVal})
+		suite.valSet, suite.valSet, []octypes.PrivValidator{suite.privVal})
 
 	// mock update functionality
 	clientState.LatestHeight = header.GetHeight().(types.Height)

@@ -4,12 +4,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
 	"github.com/line/lbm-sdk/codec"
 	sdk "github.com/line/lbm-sdk/types"
 	ocbytes "github.com/line/ostracon/libs/bytes"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	octypes "github.com/line/ostracon/types"
-	"github.com/stretchr/testify/suite"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
@@ -86,9 +87,8 @@ func (suite *OstraconTestSuite) SetupTest() {
 	val := ibctesting.NewTestValidator(pubKey, 10)
 	suite.valSet = octypes.NewValidatorSet([]*octypes.Validator{val})
 	suite.valsHash = suite.valSet.Hash()
-	voterSet := octypes.WrapValidatorsToVoterSet(suite.valSet.Validators)
-	suite.header = suite.chainA.CreateOCClientHeader(chainID, int64(height.RevisionHeight), heightMinus1, suite.now, suite.valSet, suite.valSet, voterSet, voterSet, []octypes.PrivValidator{suite.privVal})
-	suite.ctx = app.BaseApp.NewContext(checkTx, ocproto.Header{Height: 1, Time: suite.now})
+	suite.header = suite.chainA.CreateOCClientHeader(chainID, int64(height.RevisionHeight), heightMinus1, suite.now, suite.valSet, suite.valSet, []octypes.PrivValidator{suite.privVal})
+	suite.ctx = app.BaseApp.NewContext(checkTx, tmproto.Header{Height: 1, Time: suite.now})
 }
 
 func getSuiteSigners(suite *OstraconTestSuite) []octypes.PrivValidator {

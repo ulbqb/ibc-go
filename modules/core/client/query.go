@@ -3,9 +3,10 @@ package client
 import (
 	"fmt"
 
+	abci "github.com/tendermint/tendermint/abci/types"
+
 	"github.com/line/lbm-sdk/client"
 	"github.com/line/lbm-sdk/codec"
-	abci "github.com/line/ostracon/abci/types"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"

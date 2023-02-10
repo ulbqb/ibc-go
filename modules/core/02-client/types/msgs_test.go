@@ -489,8 +489,8 @@ func (suite *TypesTestSuite) TestMarshalMsgSubmitMisbehaviour() {
 			"ostracon client", func() {
 				height := types.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height))
 				heightMinus1 := types.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height)-1)
-				header1 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
-				header2 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time.Add(time.Minute), suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
+				header1 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
+				header2 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time.Add(time.Minute), suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
 
 				misbehaviour := ibcoctypes.NewMisbehaviour("ostracon-0", header1, header2)
 				msg, err = types.NewMsgSubmitMisbehaviour("ostracon-0", misbehaviour, suite.chainA.SenderAccount.GetAddress().String())
@@ -546,8 +546,8 @@ func (suite *TypesTestSuite) TestMsgSubmitMisbehaviour_ValidateBasic() {
 			func() {
 				height := types.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height))
 				heightMinus1 := types.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height)-1)
-				header1 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
-				header2 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time.Add(time.Minute), suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
+				header1 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
+				header2 := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, int64(height.RevisionHeight), heightMinus1, suite.chainA.CurrentHeader.Time.Add(time.Minute), suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
 
 				misbehaviour := ibcoctypes.NewMisbehaviour("ostracon-0", header1, header2)
 				msg, err = types.NewMsgSubmitMisbehaviour("ostracon-0", misbehaviour, suite.chainA.SenderAccount.GetAddress().String())

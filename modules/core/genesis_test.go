@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/line/lbm-sdk/codec"
-	ocproto "github.com/line/ostracon/proto/ostracon/types"
 	"github.com/stretchr/testify/suite"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
+	"github.com/line/lbm-sdk/codec"
 
 	ibc "github.com/line/ibc-go/v3/modules/core"
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
@@ -59,7 +60,7 @@ func TestIBCTestSuite(t *testing.T) {
 }
 
 func (suite *IBCTestSuite) TestValidateGenesis() {
-	header := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, suite.chainA.CurrentHeader.Height, clienttypes.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height-1)), suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
+	header := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, suite.chainA.CurrentHeader.Height, clienttypes.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height-1)), suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
 
 	testCases := []struct {
 		name     string
@@ -225,7 +226,7 @@ func (suite *IBCTestSuite) TestValidateGenesis() {
 }
 
 func (suite *IBCTestSuite) TestInitGenesis() {
-	header := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, suite.chainA.CurrentHeader.Height, clienttypes.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height-1)), suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Voters, suite.chainA.Voters, suite.chainA.Signers)
+	header := suite.chainA.CreateOCClientHeader(suite.chainA.ChainID, suite.chainA.CurrentHeader.Height, clienttypes.NewHeight(0, uint64(suite.chainA.CurrentHeader.Height-1)), suite.chainA.CurrentHeader.Time, suite.chainA.Vals, suite.chainA.Vals, suite.chainA.Signers)
 
 	testCases := []struct {
 		name     string
@@ -320,7 +321,7 @@ func (suite *IBCTestSuite) TestInitGenesis() {
 		app := simapp.Setup(false)
 
 		suite.NotPanics(func() {
-			ibc.InitGenesis(app.BaseApp.NewContext(false, ocproto.Header{Height: 1}), *app.IBCKeeper, true, tc.genState)
+			ibc.InitGenesis(app.BaseApp.NewContext(false, tmproto.Header{Height: 1}), *app.IBCKeeper, true, tc.genState)
 		})
 	}
 }

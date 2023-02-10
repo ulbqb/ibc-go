@@ -7,6 +7,11 @@ import (
 	"os"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+	abci "github.com/tendermint/tendermint/abci/types"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	dbm "github.com/tendermint/tm-db"
+
 	"github.com/line/lbm-sdk/baseapp"
 	"github.com/line/lbm-sdk/store"
 	"github.com/line/lbm-sdk/store/cache"
@@ -24,11 +29,7 @@ import (
 	"github.com/line/lbm-sdk/x/simulation"
 	slashingtypes "github.com/line/lbm-sdk/x/slashing/types"
 	stakingtypes "github.com/line/lbm-sdk/x/staking/types"
-	abci "github.com/line/ostracon/abci/types"
 	"github.com/line/ostracon/libs/log"
-	tmproto "github.com/line/ostracon/proto/ostracon/types"
-	"github.com/stretchr/testify/require"
-	dbm "github.com/tendermint/tm-db"
 
 	ibctransfertypes "github.com/line/ibc-go/v3/modules/apps/transfer/types"
 	ibchost "github.com/line/ibc-go/v3/modules/core/24-host"

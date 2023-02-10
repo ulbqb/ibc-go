@@ -3,11 +3,12 @@ package types_test
 import (
 	"testing"
 
+	"github.com/stretchr/testify/suite"
+	abcitypes "github.com/tendermint/tendermint/abci/types"
+
 	sdkerrors "github.com/line/lbm-sdk/types/errors"
-	abcitypes "github.com/line/ostracon/abci/types"
 	ocprotostate "github.com/line/ostracon/proto/ostracon/state"
 	ocstate "github.com/line/ostracon/state"
-	"github.com/stretchr/testify/suite"
 
 	"github.com/line/ibc-go/v3/modules/apps/27-interchain-accounts/host/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"

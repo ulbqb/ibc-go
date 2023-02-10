@@ -54,10 +54,9 @@ func (suite *TypesTestSuite) TestValidateGenesis() {
 
 	val := ibctesting.NewTestValidator(pubKey, 10)
 	valSet := octypes.NewValidatorSet([]*octypes.Validator{val})
-	voterSet := octypes.WrapValidatorsToVoterSet(valSet.Validators)
 
 	heightMinus1 := types.NewHeight(0, height-1)
-	header := suite.chainA.CreateOCClientHeader(chainID, int64(clientHeight.RevisionHeight), heightMinus1, now, valSet, valSet, voterSet, voterSet, []octypes.PrivValidator{privVal})
+	header := suite.chainA.CreateOCClientHeader(chainID, int64(clientHeight.RevisionHeight), heightMinus1, now, valSet, valSet, []octypes.PrivValidator{privVal})
 
 	testCases := []struct {
 		name     string
