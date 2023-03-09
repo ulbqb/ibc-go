@@ -12,12 +12,12 @@ import (
 	ibctransfertypes "github.com/line/ibc-go/v3/modules/apps/transfer/types"
 	connectiontypes "github.com/line/ibc-go/v3/modules/core/03-connection/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	"github.com/line/ibc-go/v3/testing/mock"
 )
 
 const (
-	FirstClientID     = "99-ostracon-0"
+	FirstClientID     = "07-tendermint-0"
 	FirstChannelID    = "channel-0"
 	FirstConnectionID = "connection-0"
 

@@ -10,7 +10,7 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
 // MigrateGenesis accepts exported v1.0.0 IBC client genesis file and migrates it to:
@@ -65,7 +65,7 @@ func MigrateGenesis(cdc codec.BinaryCodec, clientGenState *types.GenesisState, g
 					// remove all consensus states for the solo machine
 					// do not add to new clientsConsensus
 
-				case exported.Ostracon:
+				case exported.Tendermint:
 					// only add non expired consensus states to new clientsConsensus
 					tmClientState, ok := client.ClientState.GetCachedValue().(*ibcoctypes.ClientState)
 					if !ok {

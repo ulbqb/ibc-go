@@ -29,4 +29,4 @@ in for the IBC Golang repository. Please refer to the corresponding repositories
 
 ### Light Clients
 
-- [`99-ostracon`](https://github.com/line/ibc-go/tree/main/modules/light-clients/99-ostracon)
+- [`07-tendermint`](https://github.com/line/ibc-go/tree/main/modules/light-clients/07-tendermint)

@@ -15,7 +15,7 @@ func TestValidateParams(t *testing.T) {
 		expPass bool
 	}{
 		{"default params", DefaultParams(), true},
-		{"custom params", NewParams(exported.Ostracon), true},
+		{"custom params", NewParams(exported.Tendermint), true},
 		{"blank client", NewParams(" "), false},
 	}
 

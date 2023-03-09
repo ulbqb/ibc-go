@@ -14,7 +14,7 @@ import (
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
 	smtypes "github.com/line/ibc-go/v3/modules/light-clients/06-solomachine/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
 // MigrateStore performs in-place store migrations from SDK v0.40 of the IBC module to v1.0.0 of ibc-go.
@@ -81,7 +81,7 @@ func MigrateStore(ctx sdk.Context, storeKey sdk.StoreKey, cdc codec.BinaryCodec)
 
 			pruneSolomachineConsensusStates(clientStore)
 
-		case exported.Ostracon:
+		case exported.Tendermint:
 			var clientState exported.ClientState
 			if err := cdc.UnmarshalInterface(bz, &clientState); err != nil {
 				return sdkerrors.Wrap(err, "failed to unmarshal client state bytes into ostracon client state")
@@ -89,7 +89,7 @@ func MigrateStore(ctx sdk.Context, storeKey sdk.StoreKey, cdc codec.BinaryCodec)
 
 			tmClientState, ok := clientState.(*ibcoctypes.ClientState)
 			if !ok {
-				return sdkerrors.Wrap(clienttypes.ErrInvalidClient, "client state is not ostracon even though client id contains 99-ostracon")
+				return sdkerrors.Wrap(clienttypes.ErrInvalidClient, "client state is not ostracon even though client id contains 07-tendermint")
 			}
 
 			// add iteration keys so pruning will be successful

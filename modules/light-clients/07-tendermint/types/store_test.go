@@ -9,11 +9,11 @@ import (
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
 	solomachinetypes "github.com/line/ibc-go/v3/modules/light-clients/06-solomachine/types"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
-func (suite *OstraconTestSuite) TestGetConsensusState() {
+func (suite *TendermintTestSuite) TestGetConsensusState() {
 	var (
 		height exported.Height
 		path   *ibctesting.Path
@@ -80,7 +80,7 @@ func (suite *OstraconTestSuite) TestGetConsensusState() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestGetProcessedTime() {
+func (suite *TendermintTestSuite) TestGetProcessedTime() {
 	// setup
 	path := ibctesting.NewPath(suite.chainA, suite.chainB)
 
@@ -121,7 +121,7 @@ func (suite *OstraconTestSuite) TestGetProcessedTime() {
 	suite.Require().False(ok, "retrieved processed time for a non-existent consensus state")
 }
 
-func (suite *OstraconTestSuite) TestIterationKey() {
+func (suite *TendermintTestSuite) TestIterationKey() {
 	testHeights := []exported.Height{
 		clienttypes.NewHeight(0, 1),
 		clienttypes.NewHeight(0, 1234),
@@ -135,7 +135,7 @@ func (suite *OstraconTestSuite) TestIterationKey() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestIterateConsensusStates() {
+func (suite *TendermintTestSuite) TestIterateConsensusStates() {
 	nextValsHash := []byte("nextVals")
 
 	// Set iteration keys and consensus states
@@ -161,7 +161,7 @@ func (suite *OstraconTestSuite) TestIterateConsensusStates() {
 	suite.Require().Equal(expectedArr, testArr)
 }
 
-func (suite *OstraconTestSuite) TestGetNeighboringConsensusStates() {
+func (suite *TendermintTestSuite) TestGetNeighboringConsensusStates() {
 	nextValsHash := []byte("nextVals")
 	cs01 := types.NewConsensusState(time.Now().UTC(), commitmenttypes.NewMerkleRoot([]byte("hash0-1")), nextValsHash)
 	cs04 := types.NewConsensusState(time.Now().UTC(), commitmenttypes.NewMerkleRoot([]byte("hash0-4")), nextValsHash)

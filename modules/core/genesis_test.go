@@ -16,17 +16,17 @@ import (
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
 	"github.com/line/ibc-go/v3/modules/core/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	"github.com/line/ibc-go/v3/testing/simapp"
 )
 
 const (
 	connectionID  = "connection-0"
-	clientID      = "99-ostracon-0"
+	clientID      = "07-tendermint-0"
 	connectionID2 = "connection-1"
-	clientID2     = "99-ostracon-1"
+	clientID2     = "07-tendermint-1"
 	localhostID   = exported.Localhost + "-1"
 
 	port1 = "firstport"
@@ -106,7 +106,7 @@ func (suite *IBCTestSuite) TestValidateGenesis() {
 							},
 						),
 					},
-					clienttypes.NewParams(exported.Ostracon, exported.Localhost),
+					clienttypes.NewParams(exported.Tendermint, exported.Localhost),
 					true,
 					2,
 				),
@@ -174,7 +174,7 @@ func (suite *IBCTestSuite) TestValidateGenesis() {
 							},
 						),
 					},
-					clienttypes.NewParams(exported.Ostracon),
+					clienttypes.NewParams(exported.Tendermint),
 					false,
 					2,
 				),
@@ -270,7 +270,7 @@ func (suite *IBCTestSuite) TestInitGenesis() {
 							},
 						),
 					},
-					clienttypes.NewParams(exported.Ostracon, exported.Localhost),
+					clienttypes.NewParams(exported.Tendermint, exported.Localhost),
 					true,
 					0,
 				),

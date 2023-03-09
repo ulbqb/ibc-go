@@ -20,8 +20,8 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 	"github.com/line/ibc-go/v3/testing/simapp"
@@ -264,7 +264,7 @@ func (suite KeeperTestSuite) TestGetAllGenesisClients() {
 func (suite KeeperTestSuite) TestGetAllGenesisMetadata() {
 	expectedGenMetadata := []types.IdentifiedGenesisMetadata{
 		types.NewIdentifiedGenesisMetadata(
-			"99-ostracon-1",
+			"07-tendermint-1",
 			[]types.GenesisMetadata{
 				types.NewGenesisMetadata(ibcoctypes.ProcessedTimeKey(types.NewHeight(0, 1)), []byte("foo")),
 				types.NewGenesisMetadata(ibcoctypes.ProcessedTimeKey(types.NewHeight(0, 2)), []byte("bar")),
@@ -281,7 +281,7 @@ func (suite KeeperTestSuite) TestGetAllGenesisMetadata() {
 	}
 
 	genClients := []types.IdentifiedClientState{
-		types.NewIdentifiedClientState("99-ostracon-1", &ibcoctypes.ClientState{}), types.NewIdentifiedClientState("clientB", &ibcoctypes.ClientState{}),
+		types.NewIdentifiedClientState("07-tendermint-1", &ibcoctypes.ClientState{}), types.NewIdentifiedClientState("clientB", &ibcoctypes.ClientState{}),
 		types.NewIdentifiedClientState("clientC", &ibcoctypes.ClientState{}), types.NewIdentifiedClientState("clientD", &localhosttypes.ClientState{}),
 	}
 

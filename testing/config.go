@@ -6,7 +6,7 @@ import (
 	connectiontypes "github.com/line/ibc-go/v3/modules/core/03-connection/types"
 	channeltypes "github.com/line/ibc-go/v3/modules/core/04-channel/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	"github.com/line/ibc-go/v3/testing/mock"
 )
 
@@ -35,7 +35,7 @@ func NewOstraconConfig() *OstraconConfig {
 }
 
 func (tmcfg *OstraconConfig) GetClientType() string {
-	return exported.Ostracon
+	return exported.Tendermint
 }
 
 type ConnectionConfig struct {

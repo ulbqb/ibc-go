@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	// DefaultAllowedClients are "06-solomachine" and "99-ostracon"
-	DefaultAllowedClients = []string{exported.Solomachine, exported.Ostracon}
+	// DefaultAllowedClients are "06-solomachine" and "07-tendermint"
+	DefaultAllowedClients = []string{exported.Solomachine, exported.Tendermint}
 
 	// KeyAllowedClients is store's key for AllowedClients Params
 	KeyAllowedClients = []byte("AllowedClients")

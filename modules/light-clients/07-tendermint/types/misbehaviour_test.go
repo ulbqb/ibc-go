@@ -10,12 +10,12 @@ import (
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 )
 
-func (suite *OstraconTestSuite) TestMisbehaviour() {
+func (suite *TendermintTestSuite) TestMisbehaviour() {
 	signers := []octypes.PrivValidator{suite.privVal}
 	heightMinus1 := clienttypes.NewHeight(0, height.RevisionHeight-1)
 
@@ -25,11 +25,11 @@ func (suite *OstraconTestSuite) TestMisbehaviour() {
 		ClientId: clientID,
 	}
 
-	suite.Require().Equal(exported.Ostracon, misbehaviour.ClientType())
+	suite.Require().Equal(exported.Tendermint, misbehaviour.ClientType())
 	suite.Require().Equal(clientID, misbehaviour.GetClientID())
 }
 
-func (suite *OstraconTestSuite) TestMisbehaviourValidateBasic() {
+func (suite *TendermintTestSuite) TestMisbehaviourValidateBasic() {
 	altPrivVal := ibctestingmock.NewPV()
 	altPubKey, err := altPrivVal.GetPubKey()
 	suite.Require().NoError(err)

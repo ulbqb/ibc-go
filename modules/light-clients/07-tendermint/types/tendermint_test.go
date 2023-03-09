@@ -13,7 +13,7 @@ import (
 	octypes "github.com/line/ostracon/types"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 	"github.com/line/ibc-go/v3/testing/simapp"
@@ -35,7 +35,7 @@ var (
 	upgradePath     = []string{"upgrade", "upgradedIBCState"}
 )
 
-type OstraconTestSuite struct {
+type TendermintTestSuite struct {
 	suite.Suite
 
 	coordinator *ibctesting.Coordinator
@@ -56,7 +56,7 @@ type OstraconTestSuite struct {
 	clientTime time.Time
 }
 
-func (suite *OstraconTestSuite) SetupTest() {
+func (suite *TendermintTestSuite) SetupTest() {
 	suite.coordinator = ibctesting.NewCoordinator(suite.T(), 2)
 	suite.chainA = suite.coordinator.GetChain(ibctesting.GetChainID(1))
 	suite.chainB = suite.coordinator.GetChain(ibctesting.GetChainID(2))
@@ -91,11 +91,11 @@ func (suite *OstraconTestSuite) SetupTest() {
 	suite.ctx = app.BaseApp.NewContext(checkTx, tmproto.Header{Height: 1, Time: suite.now})
 }
 
-func getSuiteSigners(suite *OstraconTestSuite) []octypes.PrivValidator {
+func getSuiteSigners(suite *TendermintTestSuite) []octypes.PrivValidator {
 	return []octypes.PrivValidator{suite.privVal}
 }
 
-func getBothSigners(suite *OstraconTestSuite, altVal *octypes.Validator, altPrivVal octypes.PrivValidator) (*octypes.ValidatorSet, []octypes.PrivValidator) {
+func getBothSigners(suite *TendermintTestSuite, altVal *octypes.Validator, altPrivVal octypes.PrivValidator) (*octypes.ValidatorSet, []octypes.PrivValidator) {
 	// Create bothValSet with both suite validator and altVal. Would be valid update
 	bothValSet := octypes.NewValidatorSet(append(suite.valSet.Validators, altVal))
 	// Create signer array and ensure it is in same order as bothValSet
@@ -104,6 +104,6 @@ func getBothSigners(suite *OstraconTestSuite, altVal *octypes.Validator, altPriv
 	return bothValSet, bothSigners
 }
 
-func TestOstraconTestSuite(t *testing.T) {
-	suite.Run(t, new(OstraconTestSuite))
+func TestTendermintTestSuite(t *testing.T) {
+	suite.Run(t, new(TendermintTestSuite))
 }
