@@ -225,11 +225,11 @@
     - [ClientState](#ibc.lightclients.localhost.v1.ClientState)
   
 - [ibc/lightclients/ostracon/v1/ostracon.proto](#ibc/lightclients/ostracon/v1/ostracon.proto)
-    - [ClientState](#ibc.lightclients.ostracon.v1.ClientState)
-    - [ConsensusState](#ibc.lightclients.ostracon.v1.ConsensusState)
-    - [Fraction](#ibc.lightclients.ostracon.v1.Fraction)
-    - [Header](#ibc.lightclients.ostracon.v1.Header)
-    - [Misbehaviour](#ibc.lightclients.ostracon.v1.Misbehaviour)
+    - [ClientState](#ibc.lightclients.tendermint.v1.ClientState)
+    - [ConsensusState](#ibc.lightclients.tendermint.v1.ConsensusState)
+    - [Fraction](#ibc.lightclients.tendermint.v1.Fraction)
+    - [Header](#ibc.lightclients.tendermint.v1.Header)
+    - [Misbehaviour](#ibc.lightclients.tendermint.v1.Misbehaviour)
   
 - [ibc/lightclients/solomachine/v1/solomachine.proto](#ibc/lightclients/solomachine/v1/solomachine.proto)
     - [ChannelStateData](#ibc.lightclients.solomachine.v1.ChannelStateData)
@@ -3369,7 +3369,7 @@ access to keys outside the client prefix.
 
 
 
-<a name="ibc.lightclients.ostracon.v1.ClientState"></a>
+<a name="ibc.lightclients.tendermint.v1.ClientState"></a>
 
 ### ClientState
 ClientState from Ostracon tracks the current validator set, latest height,
@@ -3379,7 +3379,7 @@ and a possible frozen height.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | `chain_id` | [string](#string) |  |  |
-| `trust_level` | [Fraction](#ibc.lightclients.ostracon.v1.Fraction) |  |  |
+| `trust_level` | [Fraction](#ibc.lightclients.tendermint.v1.Fraction) |  |  |
 | `trusting_period` | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the period since the LastestTimestamp during which the submitted headers are valid for upgrade |
 | `unbonding_period` | [google.protobuf.Duration](#google.protobuf.Duration) |  | duration of the staking unbonding period |
 | `max_clock_drift` | [google.protobuf.Duration](#google.protobuf.Duration) |  | defines how much new (untrusted) header's Time can drift into the future. |
@@ -3395,7 +3395,7 @@ and a possible frozen height.
 
 
 
-<a name="ibc.lightclients.ostracon.v1.ConsensusState"></a>
+<a name="ibc.lightclients.tendermint.v1.ConsensusState"></a>
 
 ### ConsensusState
 ConsensusState defines the consensus state from Ostracon.
@@ -3412,7 +3412,7 @@ ConsensusState defines the consensus state from Ostracon.
 
 
 
-<a name="ibc.lightclients.ostracon.v1.Fraction"></a>
+<a name="ibc.lightclients.tendermint.v1.Fraction"></a>
 
 ### Fraction
 Fraction defines the protobuf message type for tmmath.Fraction that only
@@ -3429,7 +3429,7 @@ supports positive values.
 
 
 
-<a name="ibc.lightclients.ostracon.v1.Header"></a>
+<a name="ibc.lightclients.tendermint.v1.Header"></a>
 
 ### Header
 Header defines the Ostracon client consensus Header.
@@ -3458,7 +3458,7 @@ trusted validator set at the TrustedHeight.
 
 
 
-<a name="ibc.lightclients.ostracon.v1.Misbehaviour"></a>
+<a name="ibc.lightclients.tendermint.v1.Misbehaviour"></a>
 
 ### Misbehaviour
 Misbehaviour is a wrapper over two conflicting Headers
@@ -3468,8 +3468,8 @@ that implements Misbehaviour interface expected by ICS-02
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | `client_id` | [string](#string) |  | **Deprecated.** ClientID is deprecated |
-| `header_1` | [Header](#ibc.lightclients.ostracon.v1.Header) |  |  |
-| `header_2` | [Header](#ibc.lightclients.ostracon.v1.Header) |  |  |
+| `header_1` | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
+| `header_2` | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
 
 
 

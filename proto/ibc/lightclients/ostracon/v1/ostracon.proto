@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package ibc.lightclients.ostracon.v1;
+package ibc.lightclients.tendermint.v1;
 
 option go_package = "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types";
 
