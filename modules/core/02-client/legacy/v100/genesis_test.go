@@ -14,7 +14,7 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	"github.com/line/ibc-go/v3/testing/simapp"
 )
@@ -31,7 +31,7 @@ func (suite *LegacyTestSuite) TestMigrateGenesisSolomachine() {
 	solomachine := ibctesting.NewSolomachine(suite.T(), suite.chainA.Codec, "06-solomachine-0", "testing", 1)
 	solomachineMulti := ibctesting.NewSolomachine(suite.T(), suite.chainA.Codec, "06-solomachine-1", "testing", 4)
 
-	// create ostracon clients
+	// create tendermint clients
 	suite.coordinator.SetupClients(path)
 	err := path.EndpointA.UpdateClient()
 	suite.Require().NoError(err)
@@ -113,7 +113,7 @@ func (suite *LegacyTestSuite) TestMigrateGenesisSolomachine() {
 		clientStore.Set(host.ConsensusStateKey(height2), bz)
 		clientStore.Set(host.ConsensusStateKey(height3), bz)
 	}
-	// solo machine clients must come before ostracon in expected
+	// solo machine clients must come before tendermint in expected
 	clientGenState.Clients = append(clients, clientGenState.Clients...)
 
 	// migrate store get expected genesis
@@ -122,7 +122,7 @@ func (suite *LegacyTestSuite) TestMigrateGenesisSolomachine() {
 	suite.Require().NoError(err)
 	expectedClientGenState := ibcclient.ExportGenesis(path.EndpointA.Chain.GetContext(), path.EndpointA.Chain.App.GetIBCKeeper().ClientKeeper)
 
-	// NOTE: genesis time isn't updated since we aren't testing for ostracon consensus state pruning
+	// NOTE: genesis time isn't updated since we aren't testing for tendermint consensus state pruning
 	migrated, err := v100.MigrateGenesis(codec.NewProtoCodec(clientCtx.InterfaceRegistry), &clientGenState, suite.coordinator.CurrentTime, types.GetSelfHeight(suite.chainA.GetContext()))
 	suite.Require().NoError(err)
 
@@ -169,7 +169,7 @@ func (suite *LegacyTestSuite) TestMigrateGenesisSolomachine() {
 	suite.Require().Equal(string(expectedIndentedBz), string(indentedBz))
 }
 
-func (suite *LegacyTestSuite) TestMigrateGenesisOstracon() {
+func (suite *LegacyTestSuite) TestMigrateGenesisTendermint() {
 	// create two paths and setup clients
 	path1 := ibctesting.NewPath(suite.chainA, suite.chainB)
 	path2 := ibctesting.NewPath(suite.chainA, suite.chainB)

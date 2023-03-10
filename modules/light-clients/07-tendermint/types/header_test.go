@@ -3,24 +3,24 @@ package types_test
 import (
 	"time"
 
-	"github.com/tendermint/tendermint/proto/tendermint/crypto"
+	tmprotocrypto "github.com/tendermint/tendermint/proto/tendermint/crypto"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
-func (suite *OstraconTestSuite) TestGetHeight() {
+func (suite *TendermintTestSuite) TestGetHeight() {
 	header := suite.chainA.LastHeader
 	suite.Require().NotEqual(uint64(0), header.GetHeight())
 }
 
-func (suite *OstraconTestSuite) TestGetTime() {
+func (suite *TendermintTestSuite) TestGetTime() {
 	header := suite.chainA.LastHeader
 	suite.Require().NotEqual(time.Time{}, header.GetTime())
 }
 
-func (suite *OstraconTestSuite) TestHeaderValidateBasic() {
+func (suite *TendermintTestSuite) TestHeaderValidateBasic() {
 	var header *types.Header
 	testCases := []struct {
 		name     string
@@ -37,7 +37,7 @@ func (suite *OstraconTestSuite) TestHeaderValidateBasic() {
 		{"SignedHeaderFromProto failed", func() {
 			header.SignedHeader.Commit.Height = -1
 		}, false},
-		{"signed header failed ostracon ValidateBasic", func() {
+		{"signed header failed tendermint ValidateBasic", func() {
 			header = suite.chainA.LastHeader
 			header.SignedHeader.Commit = nil
 		}, false},
@@ -48,7 +48,7 @@ func (suite *OstraconTestSuite) TestHeaderValidateBasic() {
 			header.ValidatorSet = nil
 		}, false},
 		{"ValidatorSetFromProto failed", func() {
-			header.ValidatorSet.Validators[0].PubKey = crypto.PublicKey{}
+			header.ValidatorSet.Validators[0].PubKey = tmprotocrypto.PublicKey{}
 		}, false},
 		{"header validator hash does not equal hash of validator set", func() {
 			// use chainB's randomly generated validator set
@@ -56,7 +56,7 @@ func (suite *OstraconTestSuite) TestHeaderValidateBasic() {
 		}, false},
 	}
 
-	suite.Require().Equal(exported.Ostracon, suite.header.ClientType())
+	suite.Require().Equal(exported.Tendermint, suite.header.ClientType())
 
 	for _, tc := range testCases {
 		tc := tc

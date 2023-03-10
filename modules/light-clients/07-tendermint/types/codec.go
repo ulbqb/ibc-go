@@ -6,7 +6,7 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/exported"
 )
 
-// RegisterInterfaces registers the ostracon concrete client-related
+// RegisterInterfaces registers the tendermint concrete client-related
 // implementations and interfaces.
 func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
 	registry.RegisterImplementations(

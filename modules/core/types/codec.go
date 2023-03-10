@@ -8,8 +8,8 @@ import (
 	channeltypes "github.com/line/ibc-go/v3/modules/core/04-channel/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	solomachinetypes "github.com/line/ibc-go/v3/modules/light-clients/06-solomachine/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 )
 
 // RegisterInterfaces registers x/ibc interfaces into protobuf Any.

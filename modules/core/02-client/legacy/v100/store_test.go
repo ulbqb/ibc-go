@@ -10,7 +10,7 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
@@ -91,7 +91,7 @@ func (suite *LegacyTestSuite) TestMigrateStoreSolomachine() {
 		clientStore.Set(host.ConsensusStateKey(height3), bz)
 	}
 
-	// create ostracon clients
+	// create tendermint clients
 	suite.coordinator.SetupClients(path)
 
 	err := v100.MigrateStore(path.EndpointA.Chain.GetContext(), path.EndpointA.Chain.GetSimApp().GetKey(host.StoreKey), path.EndpointA.Chain.App.AppCodec())
@@ -114,9 +114,9 @@ func (suite *LegacyTestSuite) TestMigrateStoreSolomachine() {
 	}
 }
 
-// only test migration for ostracon clients
-// ensure all expired consensus states are removed from ostracon client stores
-func (suite *LegacyTestSuite) TestMigrateStoreOstracon() {
+// only test migration for tendermint clients
+// ensure all expired consensus states are removed from tendermint client stores
+func (suite *LegacyTestSuite) TestMigrateStoreTendermint() {
 	// create path and setup clients
 	path1 := ibctesting.NewPath(suite.chainA, suite.chainB)
 	suite.coordinator.SetupClients(path1)

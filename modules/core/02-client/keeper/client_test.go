@@ -12,8 +12,8 @@ import (
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 )
@@ -41,7 +41,7 @@ func (suite *KeeperTestSuite) TestCreateClient() {
 	}
 }
 
-func (suite *KeeperTestSuite) TestUpdateClientOstracon() {
+func (suite *KeeperTestSuite) TestUpdateClientTendermint() {
 	var (
 		path         *ibctesting.Path
 		updateHeader *ibcoctypes.Header
@@ -364,7 +364,7 @@ func (suite *KeeperTestSuite) TestUpgradeClient() {
 			expPass: false,
 		},
 		{
-			name: "ostracon client VerifyUpgrade fails",
+			name: "tendermint client VerifyUpgrade fails",
 			setup: func() {
 				// last Height is at next block
 				lastHeight = clienttypes.NewHeight(0, uint64(suite.chainB.GetContext().BlockHeight()+1))

@@ -6,7 +6,7 @@ import (
 
 	"github.com/line/ibc-go/v3/modules/core/exported"
 	"github.com/line/ibc-go/v3/modules/light-clients/06-solomachine/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 

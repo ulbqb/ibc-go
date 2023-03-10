@@ -17,7 +17,7 @@ import (
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	"github.com/line/ibc-go/v3/modules/core/03-connection/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	"github.com/line/ibc-go/v3/testing/simapp"
 )

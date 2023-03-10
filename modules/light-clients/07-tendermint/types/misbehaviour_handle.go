@@ -103,12 +103,12 @@ func checkMisbehaviourHeader(
 ) error {
 	tmTrustedValset, err := octypes.ValidatorSetFromProto(header.TrustedValidators)
 	if err != nil {
-		return sdkerrors.Wrap(err, "trusted validator set is not ostracon validator set type")
+		return sdkerrors.Wrap(err, "trusted validator set is not tendermint validator set type")
 	}
 
 	tmCommit, err := octypes.CommitFromProto(header.Commit)
 	if err != nil {
-		return sdkerrors.Wrap(err, "commit is not ostracon commit type")
+		return sdkerrors.Wrap(err, "commit is not tendermint commit type")
 	}
 
 	// check the trusted fields for the header against ConsensusState

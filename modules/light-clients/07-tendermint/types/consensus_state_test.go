@@ -5,10 +5,10 @@ import (
 
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
-func (suite *OstraconTestSuite) TestConsensusStateValidateBasic() {
+func (suite *TendermintTestSuite) TestConsensusStateValidateBasic() {
 	testCases := []struct {
 		msg            string
 		consensusState *types.ConsensusState
@@ -75,7 +75,7 @@ func (suite *OstraconTestSuite) TestConsensusStateValidateBasic() {
 		tc := tc
 
 		// check just to increase coverage
-		suite.Require().Equal(exported.Ostracon, tc.consensusState.ClientType())
+		suite.Require().Equal(exported.Tendermint, tc.consensusState.ClientType())
 		suite.Require().Equal(tc.consensusState.GetRoot(), tc.consensusState.Root)
 
 		err := tc.consensusState.ValidateBasic()

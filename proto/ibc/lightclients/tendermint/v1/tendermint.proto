@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package ibc.lightclients.ostracon.v1;
+package ibc.lightclients.tendermint.v1;
 
-option go_package = "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types";
+option go_package = "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types";
 
 import "tendermint/types/validator.proto";
 import "tendermint/types/types.proto";
@@ -13,7 +13,7 @@ import "ibc/core/client/v1/client.proto";
 import "ibc/core/commitment/v1/commitment.proto";
 import "gogoproto/gogo.proto";
 
-// ClientState from Ostracon tracks the current validator set, latest height,
+// ClientState from Tendermint tracks the current validator set, latest height,
 // and a possible frozen height.
 message ClientState {
   option (gogoproto.goproto_getters) = false;
@@ -59,7 +59,7 @@ message ClientState {
       [deprecated = true, (gogoproto.moretags) = "yaml:\"allow_update_after_misbehaviour\""];
 }
 
-// ConsensusState defines the consensus state from Ostracon.
+// ConsensusState defines the consensus state from Tendermint.
 message ConsensusState {
   option (gogoproto.goproto_getters) = false;
 
@@ -79,15 +79,14 @@ message ConsensusState {
 message Misbehaviour {
   option (gogoproto.goproto_getters) = false;
 
-  // ClientID is deprecated
-  string client_id = 1 [deprecated = true, (gogoproto.moretags) = "yaml:\"client_id\""];
+  string client_id = 1 [(gogoproto.moretags) = "yaml:\"client_id\""];
   Header header_1  = 2 [(gogoproto.customname) = "Header1", (gogoproto.moretags) = "yaml:\"header_1\""];
   Header header_2  = 3 [(gogoproto.customname) = "Header2", (gogoproto.moretags) = "yaml:\"header_2\""];
 }
 
-// Header defines the Ostracon client consensus Header.
+// Header defines the Tendermint client consensus Header.
 // It encapsulates all the information necessary to update from a trusted
-// Ostracon ConsensusState. The inclusion of TrustedHeight and
+// Tendermint ConsensusState. The inclusion of TrustedHeight and
 // TrustedValidators allows this update to process correctly, so long as the
 // ConsensusState for the TrustedHeight exists, this removes race conditions
 // among relayers The SignedHeader and ValidatorSet are the new untrusted update

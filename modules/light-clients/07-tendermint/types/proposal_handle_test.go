@@ -5,13 +5,13 @@ import (
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 var frozenHeight = clienttypes.NewHeight(0, 1)
 
-func (suite *OstraconTestSuite) TestCheckSubstituteUpdateStateBasic() {
+func (suite *TendermintTestSuite) TestCheckSubstituteUpdateStateBasic() {
 	var (
 		substituteClientState exported.ClientState
 		substitutePath        *ibctesting.Path
@@ -68,7 +68,7 @@ func (suite *OstraconTestSuite) TestCheckSubstituteUpdateStateBasic() {
 
 // to expire clients, time needs to be fast forwarded on both chainA and chainB.
 // this is to prevent headers from failing when attempting to update later.
-func (suite *OstraconTestSuite) TestCheckSubstituteAndUpdateState() {
+func (suite *TendermintTestSuite) TestCheckSubstituteAndUpdateState() {
 	testCases := []struct {
 		name         string
 		FreezeClient bool
@@ -202,7 +202,7 @@ func (suite *OstraconTestSuite) TestCheckSubstituteAndUpdateState() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestIsMatchingClientState() {
+func (suite *TendermintTestSuite) TestIsMatchingClientState() {
 	var (
 		subjectPath, substitutePath               *ibctesting.Path
 		subjectClientState, substituteClientState *types.ClientState

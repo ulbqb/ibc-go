@@ -5,7 +5,7 @@ import (
 
 	"github.com/line/ibc-go/v3/modules/core/02-client/keeper"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
 // BeginBlocker updates an existing localhost client with the latest block height.

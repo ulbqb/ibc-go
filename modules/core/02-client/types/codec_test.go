@@ -6,8 +6,8 @@ import (
 	"github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	localhosttypes "github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
@@ -29,7 +29,7 @@ func (suite *TypesTestSuite) TestPackClientState() {
 			true,
 		},
 		{
-			"ostracon client",
+			"tendermint client",
 			ibcoctypes.NewClientState(chainID, ibctesting.DefaultTrustLevel, ibctesting.TrustingPeriod, ibctesting.UnbondingPeriod, ibctesting.MaxClockDrift, clientHeight, commitmenttypes.GetSDKSpecs(), ibctesting.UpgradePath, false, false),
 			true,
 		},
@@ -81,7 +81,7 @@ func (suite *TypesTestSuite) TestPackConsensusState() {
 			true,
 		},
 		{
-			"ostracon consensus",
+			"tendermint consensus",
 			suite.chainA.LastHeader.ConsensusState(),
 			true,
 		},
@@ -127,7 +127,7 @@ func (suite *TypesTestSuite) TestPackHeader() {
 			true,
 		},
 		{
-			"ostracon header",
+			"tendermint header",
 			suite.chainA.LastHeader,
 			true,
 		},
@@ -174,8 +174,8 @@ func (suite *TypesTestSuite) TestPackMisbehaviour() {
 			true,
 		},
 		{
-			"ostracon misbehaviour",
-			ibcoctypes.NewMisbehaviour("ostracon-0", suite.chainA.LastHeader, suite.chainA.LastHeader),
+			"tendermint misbehaviour",
+			ibcoctypes.NewMisbehaviour("tendermint-0", suite.chainA.LastHeader, suite.chainA.LastHeader),
 			true,
 		},
 		{

@@ -7,7 +7,7 @@ import (
 
 	client "github.com/line/ibc-go/v3/modules/core/02-client"
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 

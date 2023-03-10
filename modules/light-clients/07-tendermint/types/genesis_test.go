@@ -4,14 +4,14 @@ import (
 	sdk "github.com/line/lbm-sdk/types"
 
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 // expected export ordering:
 // processed height and processed time per height
 // then all iteration keys
-func (suite *OstraconTestSuite) TestExportMetadata() {
+func (suite *TendermintTestSuite) TestExportMetadata() {
 	// test intializing client and exporting metadata
 	path := ibctesting.NewPath(suite.chainA, suite.chainB)
 	suite.coordinator.SetupClients(path)

@@ -9,8 +9,8 @@ import (
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	"github.com/line/ibc-go/v3/modules/light-clients/09-localhost/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
 )
 
 const (

@@ -18,7 +18,7 @@ import (
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 )
 
 // Keeper represents a type that grants read and write permissions to any client
@@ -270,7 +270,7 @@ func (k Keeper) GetSelfConsensusState(ctx sdk.Context, height exported.Height) (
 func (k Keeper) ValidateSelfClient(ctx sdk.Context, clientState exported.ClientState) error {
 	tmClient, ok := clientState.(*ibcoctypes.ClientState)
 	if !ok {
-		return sdkerrors.Wrapf(types.ErrInvalidClient, "client must be a Ostracon client, expected: %T, got: %T",
+		return sdkerrors.Wrapf(types.ErrInvalidClient, "client must be a Tendermint client, expected: %T, got: %T",
 			&ibcoctypes.ClientState{}, tmClient)
 	}
 

@@ -10,7 +10,7 @@ import (
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibcmock "github.com/line/ibc-go/v3/testing/mock"
 )
@@ -29,7 +29,7 @@ const (
 
 var invalidProof = []byte("invalid proof")
 
-func (suite *OstraconTestSuite) TestStatus() {
+func (suite *TendermintTestSuite) TestStatus() {
 	var (
 		path        *ibctesting.Path
 		clientState *types.ClientState
@@ -69,7 +69,7 @@ func (suite *OstraconTestSuite) TestStatus() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestValidate() {
+func (suite *TendermintTestSuite) TestValidate() {
 	testCases := []struct {
 		name        string
 		clientState *types.ClientState
@@ -91,7 +91,7 @@ func (suite *OstraconTestSuite) TestValidate() {
 			expPass:     false,
 		},
 		{
-			// NOTE: if this test fails, the code must account for the change in chainID length across ostracon versions!
+			// NOTE: if this test fails, the code must account for the change in chainID length across tendermint versions!
 			// Do not only fix the test, fix the code!
 			// https://github.com/cosmos/ibc-go/issues/177
 			name:        "valid chainID - chainID validation failed for chainID of length 50! ",
@@ -99,7 +99,7 @@ func (suite *OstraconTestSuite) TestValidate() {
 			expPass:     true,
 		},
 		{
-			// NOTE: if this test fails, the code must account for the change in chainID length across ostracon versions!
+			// NOTE: if this test fails, the code must account for the change in chainID length across tendermint versions!
 			// Do not only fix the test, fix the code!
 			// https://github.com/cosmos/ibc-go/issues/177
 			name:        "invalid chainID - chainID validation did not fail for chainID of length 51! ",
@@ -163,7 +163,7 @@ func (suite *OstraconTestSuite) TestValidate() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestInitialize() {
+func (suite *TendermintTestSuite) TestInitialize() {
 	testCases := []struct {
 		name           string
 		consensusState exported.ConsensusState
@@ -198,7 +198,7 @@ func (suite *OstraconTestSuite) TestInitialize() {
 	}
 }
 
-func (suite *OstraconTestSuite) TestVerifyClientConsensusState() {
+func (suite *TendermintTestSuite) TestVerifyClientConsensusState() {
 	testCases := []struct {
 		name           string
 		clientState    *types.ClientState
@@ -265,7 +265,7 @@ func (suite *OstraconTestSuite) TestVerifyClientConsensusState() {
 
 // test verification of the connection on chainB being represented in the
 // light client on chainA
-func (suite *OstraconTestSuite) TestVerifyConnectionState() {
+func (suite *TendermintTestSuite) TestVerifyConnectionState() {
 	var (
 		clientState *types.ClientState
 		proof       []byte
@@ -339,7 +339,7 @@ func (suite *OstraconTestSuite) TestVerifyConnectionState() {
 
 // test verification of the channel on chainB being represented in the light
 // client on chainA
-func (suite *OstraconTestSuite) TestVerifyChannelState() {
+func (suite *TendermintTestSuite) TestVerifyChannelState() {
 	var (
 		clientState *types.ClientState
 		proof       []byte
@@ -414,7 +414,7 @@ func (suite *OstraconTestSuite) TestVerifyChannelState() {
 
 // test verification of the packet commitment on chainB being represented
 // in the light client on chainA. A send from chainB to chainA is simulated.
-func (suite *OstraconTestSuite) TestVerifyPacketCommitment() {
+func (suite *TendermintTestSuite) TestVerifyPacketCommitment() {
 	var (
 		clientState      *types.ClientState
 		proof            []byte
@@ -528,7 +528,7 @@ func (suite *OstraconTestSuite) TestVerifyPacketCommitment() {
 // test verification of the acknowledgement on chainB being represented
 // in the light client on chainA. A send and ack from chainA to chainB
 // is simulated.
-func (suite *OstraconTestSuite) TestVerifyPacketAcknowledgement() {
+func (suite *TendermintTestSuite) TestVerifyPacketAcknowledgement() {
 	var (
 		clientState      *types.ClientState
 		proof            []byte
@@ -647,7 +647,7 @@ func (suite *OstraconTestSuite) TestVerifyPacketAcknowledgement() {
 // test verification of the absent acknowledgement on chainB being represented
 // in the light client on chainA. A send from chainB to chainA is simulated, but
 // no receive.
-func (suite *OstraconTestSuite) TestVerifyPacketReceiptAbsence() {
+func (suite *TendermintTestSuite) TestVerifyPacketReceiptAbsence() {
 	var (
 		clientState      *types.ClientState
 		proof            []byte
@@ -762,7 +762,7 @@ func (suite *OstraconTestSuite) TestVerifyPacketReceiptAbsence() {
 // test verification of the next receive sequence on chainB being represented
 // in the light client on chainA. A send and receive from chainB to chainA is
 // simulated.
-func (suite *OstraconTestSuite) TestVerifyNextSeqRecv() {
+func (suite *TendermintTestSuite) TestVerifyNextSeqRecv() {
 	var (
 		clientState      *types.ClientState
 		proof            []byte

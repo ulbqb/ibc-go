@@ -4,6 +4,7 @@
 
 ### Features
 * [\#5](https://github.com/line/ibc-go/pull/5) apply the changes of lbm-sdk and ostracon proto
+* [\#6](https://github.com/line/ibc-go/pull/6) change to use 07-tendermint
 
 ### Improvements
 * [\#1](https://github.com/line/ibc-go/pull/1) apply all changes of `x/ibc` in lbm-sdk until [lbm-sdk@0fbc2fcae6dba90fa80b815cf3219d6fcf46fc64](https://github.com/line/lbm-sdk/tree/0fbc2fcae6dba90fa80b815cf3219d6fcf46fc64)

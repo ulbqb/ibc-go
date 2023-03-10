@@ -5,7 +5,7 @@ import (
 	"github.com/line/ostracon/light"
 )
 
-// DefaultTrustLevel is the ostracon light client default trust level
+// DefaultTrustLevel is the tendermint light client default trust level
 var DefaultTrustLevel = NewFractionFromOc(light.DefaultTrustLevel)
 
 // NewFractionFromOc returns a new Fraction instance from a ocmath.Fraction

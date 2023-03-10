@@ -34,7 +34,7 @@ import (
 	host "github.com/line/ibc-go/v3/modules/core/24-host"
 	"github.com/line/ibc-go/v3/modules/core/exported"
 	"github.com/line/ibc-go/v3/modules/core/types"
-	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	ibcoctypes "github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	"github.com/line/ibc-go/v3/testing/mock"
 	"github.com/line/ibc-go/v3/testing/simapp"
 )
@@ -384,13 +384,13 @@ func (chain *TestChain) GetPrefix() commitmenttypes.MerklePrefix {
 	return commitmenttypes.NewMerklePrefix(chain.App.GetIBCKeeper().ConnectionKeeper.GetCommitmentPrefix().Bytes())
 }
 
-// ConstructUpdateOCClientHeader will construct a valid 99-ostracon Header to update the
+// ConstructUpdateOCClientHeader will construct a valid 07-tendermint Header to update the
 // light client on the source chain.
 func (chain *TestChain) ConstructUpdateOCClientHeader(counterparty *TestChain, clientID string) (*ibcoctypes.Header, error) {
 	return chain.ConstructUpdateOCClientHeaderWithTrustedHeight(counterparty, clientID, clienttypes.ZeroHeight())
 }
 
-// ConstructUpdateOCClientHeader will construct a valid 99-ostracon Header to update the
+// ConstructUpdateOCClientHeader will construct a valid 07-tendermint Header to update the
 // light client on the source chain.
 func (chain *TestChain) ConstructUpdateOCClientHeaderWithTrustedHeight(counterparty *TestChain, clientID string, trustedHeight clienttypes.Height) (*ibcoctypes.Header, error) {
 	header := counterparty.LastHeader

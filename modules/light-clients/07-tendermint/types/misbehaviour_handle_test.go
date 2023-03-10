@@ -10,12 +10,12 @@ import (
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 	ibctestingmock "github.com/line/ibc-go/v3/testing/mock"
 )
 
-func (suite *OstraconTestSuite) TestCheckMisbehaviourAndUpdateState() {
+func (suite *TendermintTestSuite) TestCheckMisbehaviourAndUpdateState() {
 	altPrivVal := ibctestingmock.NewPV()
 	altPubKey, err := altPrivVal.GetPubKey()
 	suite.Require().NoError(err)
@@ -290,7 +290,7 @@ func (suite *OstraconTestSuite) TestCheckMisbehaviourAndUpdateState() {
 			false,
 		},
 		{
-			"invalid ostracon misbehaviour",
+			"invalid tendermint misbehaviour",
 			types.NewClientState(chainID, types.DefaultTrustLevel, trustingPeriod, ubdPeriod, maxClockDrift, height, commitmenttypes.GetSDKSpecs(), upgradePath, false, false),
 			types.NewConsensusState(suite.now, commitmenttypes.NewMerkleRoot(tmhash.Sum([]byte("app_hash"))), bothValsHash),
 			height,

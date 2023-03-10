@@ -6,13 +6,13 @@ import (
 	clienttypes "github.com/line/ibc-go/v3/modules/core/02-client/types"
 	commitmenttypes "github.com/line/ibc-go/v3/modules/core/23-commitment/types"
 	"github.com/line/ibc-go/v3/modules/core/exported"
-	"github.com/line/ibc-go/v3/modules/light-clients/99-ostracon/types"
+	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
 	ibctesting "github.com/line/ibc-go/v3/testing"
 )
 
 var newChainId = "newChainId-1"
 
-func (suite *OstraconTestSuite) TestVerifyUpgrade() {
+func (suite *TendermintTestSuite) TestVerifyUpgrade() {
 	var (
 		upgradedClient                              exported.ClientState
 		upgradedConsState                           exported.ConsensusState

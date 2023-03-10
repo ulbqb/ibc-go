@@ -57,7 +57,7 @@ The Inter-Blockchain Communication protocol (IBC) allows blockchains to talk to 
 
     3.1 [ICS 06 Solo Machine](https://github.com/line/ibc-go/tree/main/modules/light-clients/06-solomachine)
 
-    3.2 [ICS 99 Ostracon](https://github.com/line/ibc-go/tree/main/modules/light-clients/99-ostracon)
+    3.2 [ICS 07 Tendermint](https://github.com/line/ibc-go/tree/main/modules/light-clients/07-tendermint)
 
 Note: The localhost client is currently non-functional. 
 
