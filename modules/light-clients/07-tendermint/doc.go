@@ -1,5 +1,5 @@
 /*
-Package ostracon implements a concrete `ConsensusState`, `Header`,
-`Misbehaviour` and `Equivocation` types for the Ostracon consensus light client.
+Package tendermint implements a concrete `ConsensusState`, `Header`,
+`Misbehaviour` and `Equivocation` types for the Tendermint consensus light client.
 */
-package ostracon
+package tendermint

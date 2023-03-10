@@ -41,7 +41,7 @@ func (suite *KeeperTestSuite) TestCreateClient() {
 	}
 }
 
-func (suite *KeeperTestSuite) TestUpdateClientOstracon() {
+func (suite *KeeperTestSuite) TestUpdateClientTendermint() {
 	var (
 		path         *ibctesting.Path
 		updateHeader *ibcoctypes.Header
@@ -364,7 +364,7 @@ func (suite *KeeperTestSuite) TestUpgradeClient() {
 			expPass: false,
 		},
 		{
-			name: "ostracon client VerifyUpgrade fails",
+			name: "tendermint client VerifyUpgrade fails",
 			setup: func() {
 				// last Height is at next block
 				lastHeight = clienttypes.NewHeight(0, uint64(suite.chainB.GetContext().BlockHeight()+1))

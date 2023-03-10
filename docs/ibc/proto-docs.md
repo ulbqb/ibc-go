@@ -4008,7 +4008,7 @@ to preserve uniqueness of different data sign byte encodings.
 <a name="ibc.lightclients.tendermint.v1.ClientState"></a>
 
 ### ClientState
-ClientState from Ostracon tracks the current validator set, latest height,
+ClientState from Tendermint tracks the current validator set, latest height,
 and a possible frozen height.
 
 
@@ -4034,7 +4034,7 @@ and a possible frozen height.
 <a name="ibc.lightclients.tendermint.v1.ConsensusState"></a>
 
 ### ConsensusState
-ConsensusState defines the consensus state from Ostracon.
+ConsensusState defines the consensus state from Tendermint.
 
 
 | Field | Type | Label | Description |
@@ -4068,9 +4068,9 @@ supports positive values.
 <a name="ibc.lightclients.tendermint.v1.Header"></a>
 
 ### Header
-Header defines the Ostracon client consensus Header.
+Header defines the Tendermint client consensus Header.
 It encapsulates all the information necessary to update from a trusted
-Ostracon ConsensusState. The inclusion of TrustedHeight and
+Tendermint ConsensusState. The inclusion of TrustedHeight and
 TrustedValidators allows this update to process correctly, so long as the
 ConsensusState for the TrustedHeight exists, this removes race conditions
 among relayers The SignedHeader and ValidatorSet are the new untrusted update
@@ -4103,7 +4103,7 @@ that implements Misbehaviour interface expected by ICS-02
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| `client_id` | [string](#string) |  | **Deprecated.** ClientID is deprecated |
+| `client_id` | [string](#string) |  |  |
 | `header_1` | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
 | `header_2` | [Header](#ibc.lightclients.tendermint.v1.Header) |  |  |
 

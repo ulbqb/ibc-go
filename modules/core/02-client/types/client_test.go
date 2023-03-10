@@ -23,7 +23,7 @@ func (suite *TypesTestSuite) TestMarshalConsensusStateWithHeight() {
 			},
 		},
 		{
-			"ostracon client", func() {
+			"tendermint client", func() {
 				path := ibctesting.NewPath(suite.chainA, suite.chainB)
 				suite.coordinator.SetupClients(path)
 				clientState := suite.chainA.GetClientState(path.EndpointA.ClientID)
@@ -63,13 +63,13 @@ func TestValidateClientType(t *testing.T) {
 		clientType string
 		expPass    bool
 	}{
-		{"valid", "ostracon", true},
+		{"valid", "tendermint", true},
 		{"valid solomachine", "solomachine-v1", true},
-		{"too large", "ostraconostraconostraconostraconostraconostraconostracon", false},
+		{"too large", "tenderminttenderminttenderminttenderminttenderminttenderminttendermint", false},
 		{"too short", "t", false},
 		{"blank id", "               ", false},
 		{"empty id", "", false},
-		{"ends with dash", "ostracon-", false},
+		{"ends with dash", "tendermint-", false},
 	}
 
 	for _, tc := range testCases {

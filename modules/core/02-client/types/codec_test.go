@@ -29,7 +29,7 @@ func (suite *TypesTestSuite) TestPackClientState() {
 			true,
 		},
 		{
-			"ostracon client",
+			"tendermint client",
 			ibcoctypes.NewClientState(chainID, ibctesting.DefaultTrustLevel, ibctesting.TrustingPeriod, ibctesting.UnbondingPeriod, ibctesting.MaxClockDrift, clientHeight, commitmenttypes.GetSDKSpecs(), ibctesting.UpgradePath, false, false),
 			true,
 		},
@@ -81,7 +81,7 @@ func (suite *TypesTestSuite) TestPackConsensusState() {
 			true,
 		},
 		{
-			"ostracon consensus",
+			"tendermint consensus",
 			suite.chainA.LastHeader.ConsensusState(),
 			true,
 		},
@@ -127,7 +127,7 @@ func (suite *TypesTestSuite) TestPackHeader() {
 			true,
 		},
 		{
-			"ostracon header",
+			"tendermint header",
 			suite.chainA.LastHeader,
 			true,
 		},
@@ -174,8 +174,8 @@ func (suite *TypesTestSuite) TestPackMisbehaviour() {
 			true,
 		},
 		{
-			"ostracon misbehaviour",
-			ibcoctypes.NewMisbehaviour("ostracon-0", suite.chainA.LastHeader, suite.chainA.LastHeader),
+			"tendermint misbehaviour",
+			ibcoctypes.NewMisbehaviour("tendermint-0", suite.chainA.LastHeader, suite.chainA.LastHeader),
 			true,
 		},
 		{

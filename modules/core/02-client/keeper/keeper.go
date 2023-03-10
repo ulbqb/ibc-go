@@ -270,7 +270,7 @@ func (k Keeper) GetSelfConsensusState(ctx sdk.Context, height exported.Height) (
 func (k Keeper) ValidateSelfClient(ctx sdk.Context, clientState exported.ClientState) error {
 	tmClient, ok := clientState.(*ibcoctypes.ClientState)
 	if !ok {
-		return sdkerrors.Wrapf(types.ErrInvalidClient, "client must be a Ostracon client, expected: %T, got: %T",
+		return sdkerrors.Wrapf(types.ErrInvalidClient, "client must be a Tendermint client, expected: %T, got: %T",
 			&ibcoctypes.ClientState{}, tmClient)
 	}
 

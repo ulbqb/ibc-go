@@ -22,8 +22,8 @@ import (
 //
 // - Migrating solo machine client states from v1 to v2 protobuf definition
 // - Pruning all solo machine consensus states
-// - Pruning expired ostracon consensus states
-// - Adds ProcessedHeight and Iteration keys for unexpired ostracon consensus states
+// - Pruning expired tendermint consensus states
+// - Adds ProcessedHeight and Iteration keys for unexpired tendermint consensus states
 func MigrateStore(ctx sdk.Context, storeKey sdk.StoreKey, cdc codec.BinaryCodec) (err error) {
 	store := ctx.KVStore(storeKey)
 	iterator := sdk.KVStorePrefixIterator(store, host.KeyClientStorePrefix)
@@ -84,12 +84,12 @@ func MigrateStore(ctx sdk.Context, storeKey sdk.StoreKey, cdc codec.BinaryCodec)
 		case exported.Tendermint:
 			var clientState exported.ClientState
 			if err := cdc.UnmarshalInterface(bz, &clientState); err != nil {
-				return sdkerrors.Wrap(err, "failed to unmarshal client state bytes into ostracon client state")
+				return sdkerrors.Wrap(err, "failed to unmarshal client state bytes into tendermint client state")
 			}
 
 			tmClientState, ok := clientState.(*ibcoctypes.ClientState)
 			if !ok {
-				return sdkerrors.Wrap(clienttypes.ErrInvalidClient, "client state is not ostracon even though client id contains 07-tendermint")
+				return sdkerrors.Wrap(clienttypes.ErrInvalidClient, "client state is not tendermint even though client id contains 07-tendermint")
 			}
 
 			// add iteration keys so pruning will be successful
@@ -148,7 +148,7 @@ func pruneSolomachineConsensusStates(clientStore sdk.KVStore) {
 	}
 }
 
-// addConsensusMetadata adds the iteration key and processed height for all ostracon consensus states
+// addConsensusMetadata adds the iteration key and processed height for all tendermint consensus states
 // These keys were not included in the previous release of the IBC module. Adding the iteration keys allows
 // for pruning iteration.
 func addConsensusMetadata(ctx sdk.Context, clientStore sdk.KVStore) {

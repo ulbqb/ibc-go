@@ -1,4 +1,4 @@
-package ostracon
+package tendermint
 
 import (
 	"github.com/line/ibc-go/v3/modules/light-clients/07-tendermint/types"
