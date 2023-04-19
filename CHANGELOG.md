@@ -7,6 +7,7 @@
 * (all) [\#10](https://github.com/Finschia/ibc-go/pull/10) chore: fix path due to change in organization
 
 ### Improvements
+* [\#11](https://github.com/Finschia/ibc-go/pull/11) fix: delete queries generated from the removed `QueryAppVersionRequest`/`QueryAppVersionResponse`
 
 ### Bug Fixes
 
