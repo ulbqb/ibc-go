@@ -19,7 +19,7 @@ for dir in $proto_dirs; do
   -I "proto" \
   -I "third_party/proto" \
   --gocosmos_out=plugins=interfacetype+grpc,\
-Mgoogle/protobuf/any.proto=github.com/cosmos/cosmos-sdk/codec/types:. \
+Mgoogle/protobuf/any.proto=github.com/Finschia/finschia-sdk/codec/types:. \
   --grpc-gateway_out=logtostderr=true:. \
   $(find "${dir}" -maxdepth 1 -name '*.proto')
 
@@ -35,5 +35,5 @@ buf protoc \
 go mod tidy
 
 # move proto files to the right places
-cp -r github.com/cosmos/ibc-go/v*/modules/* modules/
+cp -r github.com/Finschia/ibc-go/v*/modules/* modules/
 rm -rf github.com

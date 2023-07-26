@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package ibc.applications.fee.v1;
 
-option go_package = "github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types";
+option go_package = "github.com/Finschia/ibc-go/v4/modules/apps/29-fee/types";
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
@@ -128,7 +128,7 @@ message QueryTotalRecvFeesResponse {
   repeated cosmos.base.v1beta1.Coin recv_fees = 1 [
     (gogoproto.moretags)     = "yaml:\"recv_fees\"",
     (gogoproto.nullable)     = false,
-    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+    (gogoproto.castrepeated) = "github.com/Finschia/finschia-sdk/types.Coins"
   ];
 }
 
@@ -144,7 +144,7 @@ message QueryTotalAckFeesResponse {
   repeated cosmos.base.v1beta1.Coin ack_fees = 1 [
     (gogoproto.moretags)     = "yaml:\"ack_fees\"",
     (gogoproto.nullable)     = false,
-    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+    (gogoproto.castrepeated) = "github.com/Finschia/finschia-sdk/types.Coins"
   ];
 }
 
@@ -160,7 +160,7 @@ message QueryTotalTimeoutFeesResponse {
   repeated cosmos.base.v1beta1.Coin timeout_fees = 1 [
     (gogoproto.moretags)     = "yaml:\"timeout_fees\"",
     (gogoproto.nullable)     = false,
-    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+    (gogoproto.castrepeated) = "github.com/Finschia/finschia-sdk/types.Coins"
   ];
 }
 
