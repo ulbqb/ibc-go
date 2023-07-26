@@ -16,11 +16,12 @@ import (
 	capabilitykeeper "github.com/Finschia/finschia-sdk/x/capability/keeper"
 	stakingkeeper "github.com/Finschia/finschia-sdk/x/staking/keeper"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	ocabci "github.com/Finschia/ostracon/abci/types"
+	"github.com/Finschia/ostracon/libs/log"
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/keeper"
@@ -30,7 +31,7 @@ import (
 var DefaultTestingAppInit func() (TestingApp, map[string]json.RawMessage) = SetupTestingApp
 
 type TestingApp interface {
-	abci.Application
+	ocabci.Application
 
 	// ibc-go additions
 	GetBaseApp() *baseapp.BaseApp
@@ -71,7 +72,7 @@ func SetupWithGenesisValSet(t *testing.T, valSet *tmtypes.ValidatorSet, genAccs 
 	bondAmt := sdk.TokensFromConsensusPower(1, powerReduction)
 
 	for _, val := range valSet.Validators {
-		pk, err := cryptocodec.FromTmPubKeyInterface(val.PubKey)
+		pk, err := cryptocodec.FromOcPubKeyInterface(val.PubKey)
 		require.NoError(t, err)
 		pkAny, err := codectypes.NewAnyWithValue(pk)
 		require.NoError(t, err)
@@ -129,7 +130,7 @@ func SetupWithGenesisValSet(t *testing.T, valSet *tmtypes.ValidatorSet, genAccs 
 	// commit genesis changes
 	app.Commit()
 	app.BeginBlock(
-		abci.RequestBeginBlock{
+		ocabci.RequestBeginBlock{
 			Header: tmproto.Header{
 				ChainID:            chainID,
 				Height:             app.LastBlockHeight() + 1,

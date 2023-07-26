@@ -10,10 +10,10 @@ import (
 	cryptocodec "github.com/Finschia/finschia-sdk/crypto/codec"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	tmbytes "github.com/Finschia/ostracon/libs/bytes"
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/stretchr/testify/suite"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/keeper"
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
@@ -109,7 +109,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 		privVal := ibctestingmock.NewPV()
 		tmPk, err := privVal.GetPubKey()
 		suite.Require().NoError(err)
-		pk, err := cryptocodec.FromTmPubKeyInterface(tmPk)
+		pk, err := cryptocodec.FromOcPubKeyInterface(tmPk)
 		suite.Require().NoError(err)
 		val, err := stakingtypes.NewValidator(sdk.ValAddress(pk.Address()), pk, stakingtypes.Description{})
 		suite.Require().NoError(err)

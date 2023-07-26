@@ -7,8 +7,8 @@ import (
 	"github.com/Finschia/finschia-sdk/crypto/keys/secp256k1"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	authtypes "github.com/Finschia/finschia-sdk/x/auth/types"
+	"github.com/Finschia/ostracon/crypto"
 	"github.com/stretchr/testify/require"
-	"github.com/tendermint/tendermint/crypto"
 
 	"github.com/cosmos/ibc-go/v4/testing/simapp"
 )

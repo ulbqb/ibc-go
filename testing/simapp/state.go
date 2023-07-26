@@ -16,8 +16,8 @@ import (
 	authtypes "github.com/Finschia/finschia-sdk/x/auth/types"
 	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	simappparams "github.com/cosmos/ibc-go/v4/testing/simapp/params"
 )

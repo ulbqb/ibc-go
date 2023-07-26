@@ -25,11 +25,12 @@ import (
 	"github.com/Finschia/finschia-sdk/x/genutil"
 	genutiltypes "github.com/Finschia/finschia-sdk/x/genutil/types"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	occonfig "github.com/Finschia/ostracon/config"
+	"github.com/Finschia/ostracon/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/spf13/cobra"
-	tmconfig "github.com/tendermint/tendermint/config"
 	tmos "github.com/tendermint/tendermint/libs/os"
 	tmrand "github.com/tendermint/tendermint/libs/rand"
-	"github.com/tendermint/tendermint/types"
 	tmtime "github.com/tendermint/tendermint/types/time"
 )
 
@@ -99,7 +100,7 @@ const nodeDirPerm = 0o755
 func InitTestnet(
 	clientCtx client.Context,
 	cmd *cobra.Command,
-	nodeConfig *tmconfig.Config,
+	nodeConfig *occonfig.Config,
 	mbm module.BasicManager,
 	genBalIterator banktypes.GenesisBalancesIterator,
 	outputDir,
@@ -310,7 +311,7 @@ func initGenFiles(
 }
 
 func collectGenFiles(
-	clientCtx client.Context, nodeConfig *tmconfig.Config, chainID string,
+	clientCtx client.Context, nodeConfig *occonfig.Config, chainID string,
 	nodeIDs []string, valPubKeys []cryptotypes.PubKey, numValidators int,
 	outputDir, nodeDirPrefix, nodeDaemonHome string, genBalIterator banktypes.GenesisBalancesIterator,
 ) error {
@@ -328,7 +329,7 @@ func collectGenFiles(
 		nodeID, valPubKey := nodeIDs[i], valPubKeys[i]
 		initCfg := genutiltypes.NewInitConfig(chainID, gentxsDir, nodeID, valPubKey)
 
-		genDoc, err := types.GenesisDocFromFile(nodeConfig.GenesisFile())
+		genDoc, err := tmtypes.GenesisDocFromFile(nodeConfig.GenesisFile())
 		if err != nil {
 			return err
 		}

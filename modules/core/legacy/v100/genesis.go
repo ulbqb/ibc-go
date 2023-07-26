@@ -4,7 +4,7 @@ import (
 	"github.com/Finschia/finschia-sdk/client"
 	"github.com/Finschia/finschia-sdk/codec"
 	genutiltypes "github.com/Finschia/finschia-sdk/x/genutil/types"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	clientv100 "github.com/cosmos/ibc-go/v4/modules/core/02-client/legacy/v100"
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"

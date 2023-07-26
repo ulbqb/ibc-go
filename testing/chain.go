@@ -17,12 +17,13 @@ import (
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	"github.com/Finschia/finschia-sdk/x/staking/teststaking"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	ocabci "github.com/Finschia/ostracon/abci/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmprotoversion "github.com/tendermint/tendermint/proto/tendermint/version"
-	tmtypes "github.com/tendermint/tendermint/types"
 	tmversion "github.com/tendermint/tendermint/version"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
@@ -292,7 +293,7 @@ func (chain *TestChain) NextBlock() {
 		NextValidatorsHash: chain.NextVals.Hash(),
 	}
 
-	chain.App.BeginBlock(abci.RequestBeginBlock{Header: chain.CurrentHeader})
+	chain.App.BeginBlock(ocabci.RequestBeginBlock{Header: chain.CurrentHeader})
 }
 
 // sendMsgs delivers a transaction through the application without returning the result.
@@ -359,7 +360,7 @@ func (chain *TestChain) GetValsAtHeight(height int64) (*tmtypes.ValidatorSet, bo
 
 	valSet := stakingtypes.Validators(histInfo.Valset)
 
-	tmValidators, err := teststaking.ToTmValidators(valSet, sdk.DefaultPowerReduction)
+	tmValidators, err := teststaking.ToOcValidators(valSet, sdk.DefaultPowerReduction)
 	if err != nil {
 		panic(err)
 	}
@@ -464,7 +465,7 @@ func (chain *TestChain) CreateTMClientHeader(chainID string, blockHeight int64, 
 		AppHash:            chain.CurrentHeader.AppHash,
 		LastResultsHash:    tmhash.Sum([]byte("last_results_hash")),
 		EvidenceHash:       tmhash.Sum([]byte("evidence_hash")),
-		ProposerAddress:    tmValSet.Proposer.Address, //nolint:staticcheck
+		ProposerAddress:    tmValSet.SelectProposer([]byte{}, blockHeight, 0).Address, //nolint:staticcheck
 	}
 
 	hhash := tmHeader.Hash()

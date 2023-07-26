@@ -6,7 +6,7 @@ import (
 	"time"
 
 	upgradetypes "github.com/Finschia/finschia-sdk/x/upgrade/types"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"

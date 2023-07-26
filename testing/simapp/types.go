@@ -5,6 +5,7 @@ import (
 	"github.com/Finschia/finschia-sdk/server/types"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	"github.com/Finschia/finschia-sdk/types/module"
+	ocabci "github.com/Finschia/ostracon/abci/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
 
@@ -19,7 +20,7 @@ type App interface {
 	LegacyAmino() *codec.LegacyAmino
 
 	// Application updates every begin block.
-	BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock
+	BeginBlocker(ctx sdk.Context, req ocabci.RequestBeginBlock) abci.ResponseBeginBlock
 
 	// Application updates every end block.
 	EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock

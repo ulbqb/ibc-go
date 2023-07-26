@@ -10,7 +10,7 @@ import (
 	capabilitykeeper "github.com/Finschia/finschia-sdk/x/capability/keeper"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	paramtypes "github.com/Finschia/finschia-sdk/x/params/types"
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/Finschia/ostracon/libs/log"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/controller/types"
 	icatypes "github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/types"

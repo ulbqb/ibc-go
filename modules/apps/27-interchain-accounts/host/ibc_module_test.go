@@ -7,10 +7,10 @@ import (
 	sdk "github.com/Finschia/finschia-sdk/types"
 	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
+	"github.com/Finschia/ostracon/crypto"
 	"github.com/gogo/protobuf/proto"
 	"github.com/stretchr/testify/suite"
 	abcitypes "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/crypto"
 	tmprotostate "github.com/tendermint/tendermint/proto/tendermint/state"
 	tmstate "github.com/tendermint/tendermint/state"
 
@@ -31,7 +31,7 @@ var (
 	TestAccAddress = icatypes.GenerateAddress(sdk.AccAddress(crypto.AddressHash([]byte(icatypes.ModuleName))), ibctesting.FirstConnectionID, TestPortID)
 
 	// TestOwnerAddress defines a reusable bech32 address for testing purposes
-	TestOwnerAddress = "cosmos17dtl0mjt3t77kpuhg2edqzjpszulwhgzuj9ljs"
+	TestOwnerAddress = "link17dtl0mjt3t77kpuhg2edqzjpszulwhgzfu9afc"
 
 	// TestPortID defines a resuable port identifier for testing purposes
 	TestPortID, _ = icatypes.NewControllerPortID(TestOwnerAddress)

@@ -7,8 +7,8 @@ import (
 	capabilitykeeper "github.com/Finschia/finschia-sdk/x/capability/keeper"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	paramtypes "github.com/Finschia/finschia-sdk/x/params/types"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/log"
+	tmbytes "github.com/Finschia/ostracon/libs/bytes"
+	"github.com/Finschia/ostracon/libs/log"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
 	host "github.com/cosmos/ibc-go/v4/modules/core/24-host"

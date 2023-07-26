@@ -11,8 +11,8 @@ import (
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 	paramtypes "github.com/Finschia/finschia-sdk/x/params/types"
 	upgradetypes "github.com/Finschia/finschia-sdk/x/upgrade/types"
-	"github.com/tendermint/tendermint/libs/log"
-	"github.com/tendermint/tendermint/light"
+	"github.com/Finschia/ostracon/libs/log"
+	"github.com/Finschia/ostracon/light"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	commitmenttypes "github.com/cosmos/ibc-go/v4/modules/core/23-commitment/types"

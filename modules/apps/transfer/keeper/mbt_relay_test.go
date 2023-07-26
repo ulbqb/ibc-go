@@ -13,7 +13,7 @@ import (
 
 	sdk "github.com/Finschia/finschia-sdk/types"
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
-	"github.com/tendermint/tendermint/crypto"
+	"github.com/Finschia/ostracon/crypto"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
