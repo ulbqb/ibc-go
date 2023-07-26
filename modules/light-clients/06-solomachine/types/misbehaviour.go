@@ -3,7 +3,7 @@ package types
 import (
 	"bytes"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"

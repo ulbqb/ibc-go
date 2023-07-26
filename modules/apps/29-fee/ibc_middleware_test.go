@@ -3,8 +3,8 @@ package fee_test
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	fee "github.com/Finschia/ibc-go/v4/modules/apps/29-fee"
 	"github.com/Finschia/ibc-go/v4/modules/apps/29-fee/types"

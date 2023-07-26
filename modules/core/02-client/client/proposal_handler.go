@@ -1,7 +1,7 @@
 package client
 
 import (
-	govclient "github.com/cosmos/cosmos-sdk/x/gov/client"
+	govclient "github.com/Finschia/finschia-sdk/x/gov/client"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/02-client/client/cli"
 )

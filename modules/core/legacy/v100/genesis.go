@@ -1,9 +1,9 @@
 package v100
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
+	"github.com/Finschia/finschia-sdk/client"
+	"github.com/Finschia/finschia-sdk/codec"
+	genutiltypes "github.com/Finschia/finschia-sdk/x/genutil/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 
 	clientv100 "github.com/Finschia/ibc-go/v4/modules/core/02-client/legacy/v100"

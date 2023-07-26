@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	icatypes "github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/types"
 	ibctesting "github.com/Finschia/ibc-go/v4/testing"

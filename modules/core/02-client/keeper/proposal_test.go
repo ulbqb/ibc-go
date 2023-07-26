@@ -1,8 +1,8 @@
 package keeper_test
 
 import (
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
+	govtypes "github.com/Finschia/finschia-sdk/x/gov/types"
+	upgradetypes "github.com/Finschia/finschia-sdk/x/upgrade/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"

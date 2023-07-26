@@ -3,8 +3,8 @@ package keeper_test
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/query"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	"github.com/Finschia/finschia-sdk/types/query"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"

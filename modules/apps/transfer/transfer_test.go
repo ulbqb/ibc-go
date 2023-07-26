@@ -3,7 +3,7 @@ package transfer_test
 import (
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 	"github.com/stretchr/testify/suite"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"

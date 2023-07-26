@@ -1,10 +1,10 @@
 package types_test
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
+	govtypes "github.com/Finschia/finschia-sdk/x/gov/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/types"
 	"github.com/Finschia/ibc-go/v4/testing/simapp"

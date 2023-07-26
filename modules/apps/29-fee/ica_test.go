@@ -1,9 +1,9 @@
 package fee_test
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
+	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
 
 	icahosttypes "github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/types"

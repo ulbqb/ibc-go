@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	authtypes "github.com/Finschia/finschia-sdk/x/auth/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"
 	ibcexported "github.com/Finschia/ibc-go/v4/modules/core/exported"

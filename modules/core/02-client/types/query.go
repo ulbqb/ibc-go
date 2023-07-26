@@ -1,7 +1,7 @@
 package types
 
 import (
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"
 )

@@ -1,11 +1,11 @@
 package types
 
 import (
+	sdk "github.com/Finschia/finschia-sdk/types"
+	"github.com/Finschia/finschia-sdk/x/auth/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"
 	ibcexported "github.com/Finschia/ibc-go/v4/modules/core/exported"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
 )
 
 // AccountKeeper defines the contract required for account APIs.

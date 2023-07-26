@@ -3,7 +3,7 @@ package keeper
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"
 )

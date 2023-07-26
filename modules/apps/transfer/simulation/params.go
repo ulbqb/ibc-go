@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math/rand"
 
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/x/simulation"
+	simtypes "github.com/Finschia/finschia-sdk/types/simulation"
+	"github.com/Finschia/finschia-sdk/x/simulation"
 	gogotypes "github.com/gogo/protobuf/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"

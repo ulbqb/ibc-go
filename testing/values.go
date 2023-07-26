@@ -7,7 +7,7 @@ package ibctesting
 import (
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	ibctransfertypes "github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"
 	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"

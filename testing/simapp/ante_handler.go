@@ -1,9 +1,9 @@
 package simapp
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/cosmos/cosmos-sdk/x/auth/ante"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	"github.com/Finschia/finschia-sdk/x/auth/ante"
 
 	ibcante "github.com/Finschia/ibc-go/v4/modules/core/ante"
 	"github.com/Finschia/ibc-go/v4/modules/core/keeper"

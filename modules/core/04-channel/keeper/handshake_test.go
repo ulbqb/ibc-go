@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"fmt"
 
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"

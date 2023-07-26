@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/types/kv"
+	"github.com/Finschia/finschia-sdk/types/kv"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"
 )

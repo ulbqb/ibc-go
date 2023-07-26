@@ -1,7 +1,7 @@
 package fee_test
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/29-fee/types"
 	transfertypes "github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"

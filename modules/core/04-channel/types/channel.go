@@ -1,7 +1,7 @@
 package types
 
 import (
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"

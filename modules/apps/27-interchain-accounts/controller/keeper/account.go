@@ -1,8 +1,8 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	icatypes "github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/types"
 	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"

@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"

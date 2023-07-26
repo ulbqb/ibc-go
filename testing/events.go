@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"

@@ -3,7 +3,7 @@ package types
 import (
 	"strings"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"
 )

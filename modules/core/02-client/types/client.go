@@ -6,8 +6,8 @@ import (
 	"sort"
 	"strings"
 
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 	proto "github.com/gogo/protobuf/proto"
 
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"

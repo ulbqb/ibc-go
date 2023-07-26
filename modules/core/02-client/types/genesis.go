@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
 
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"

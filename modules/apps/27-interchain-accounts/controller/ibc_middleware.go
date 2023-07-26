@@ -1,9 +1,9 @@
 package controller
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/controller/keeper"
 	"github.com/Finschia/ibc-go/v4/modules/apps/27-interchain-accounts/controller/types"

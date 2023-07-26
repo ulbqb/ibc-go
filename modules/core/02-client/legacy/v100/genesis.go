@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/types/kv"
+	"github.com/Finschia/finschia-sdk/types/kv"
 	"github.com/stretchr/testify/require"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/02-client/simulation"

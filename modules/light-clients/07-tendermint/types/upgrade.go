@@ -3,10 +3,10 @@ package types
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	upgradetypes "github.com/Finschia/finschia-sdk/x/upgrade/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	commitmenttypes "github.com/Finschia/ibc-go/v4/modules/core/23-commitment/types"
