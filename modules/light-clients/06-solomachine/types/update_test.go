@@ -4,10 +4,10 @@ import (
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/cosmos/ibc-go/v4/modules/core/exported"
-	"github.com/cosmos/ibc-go/v4/modules/light-clients/06-solomachine/types"
-	ibctmtypes "github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
-	ibctesting "github.com/cosmos/ibc-go/v4/testing"
+	"github.com/Finschia/ibc-go/v4/modules/core/exported"
+	"github.com/Finschia/ibc-go/v4/modules/light-clients/06-solomachine/types"
+	ibctmtypes "github.com/Finschia/ibc-go/v4/modules/light-clients/07-tendermint/types"
+	ibctesting "github.com/Finschia/ibc-go/v4/testing"
 )
 
 func (suite *SoloMachineTestSuite) TestCheckHeaderAndUpdateState() {

@@ -1,6 +1,6 @@
 /*
-	This file contains the variables, constants, and default values
-	used in the testing package and commonly defined in tests.
+This file contains the variables, constants, and default values
+used in the testing package and commonly defined in tests.
 */
 package ibctesting
 
@@ -9,12 +9,12 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	ibctransfertypes "github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
-	connectiontypes "github.com/cosmos/ibc-go/v4/modules/core/03-connection/types"
-	commitmenttypes "github.com/cosmos/ibc-go/v4/modules/core/23-commitment/types"
-	ibctmtypes "github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
-	"github.com/cosmos/ibc-go/v4/testing/mock"
-	"github.com/cosmos/ibc-go/v4/testing/simapp"
+	ibctransfertypes "github.com/Finschia/ibc-go/v4/modules/apps/transfer/types"
+	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"
+	commitmenttypes "github.com/Finschia/ibc-go/v4/modules/core/23-commitment/types"
+	ibctmtypes "github.com/Finschia/ibc-go/v4/modules/light-clients/07-tendermint/types"
+	"github.com/Finschia/ibc-go/v4/testing/mock"
+	"github.com/Finschia/ibc-go/v4/testing/simapp"
 )
 
 const (

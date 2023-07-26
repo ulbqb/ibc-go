@@ -9,7 +9,7 @@ import (
 	tmprotostate "github.com/tendermint/tendermint/proto/tendermint/state"
 	tmstate "github.com/tendermint/tendermint/state"
 
-	ibctesting "github.com/cosmos/ibc-go/v4/testing"
+	ibctesting "github.com/Finschia/ibc-go/v4/testing"
 )
 
 const (

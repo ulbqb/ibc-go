@@ -1,11 +1,11 @@
 package keeper_test
 
 import (
-	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types"
-	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
-	channeltypes "github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"
-	ibctesting "github.com/cosmos/ibc-go/v4/testing"
-	ibcmock "github.com/cosmos/ibc-go/v4/testing/mock"
+	"github.com/Finschia/ibc-go/v4/modules/apps/29-fee/types"
+	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
+	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"
+	ibctesting "github.com/Finschia/ibc-go/v4/testing"
+	ibcmock "github.com/Finschia/ibc-go/v4/testing/mock"
 )
 
 func (suite *KeeperTestSuite) TestWriteAcknowledgementAsync() {

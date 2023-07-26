@@ -1,8 +1,8 @@
 package types_test
 
 import (
-	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
-	ibctmtypes "github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
+	"github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
+	ibctmtypes "github.com/Finschia/ibc-go/v4/modules/light-clients/07-tendermint/types"
 )
 
 func (suite *TypesTestSuite) TestMarshalHeader() {

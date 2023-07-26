@@ -3,9 +3,9 @@ package types_test
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
-	"github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
-	ibctesting "github.com/cosmos/ibc-go/v4/testing"
+	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
+	"github.com/Finschia/ibc-go/v4/modules/light-clients/07-tendermint/types"
+	ibctesting "github.com/Finschia/ibc-go/v4/testing"
 )
 
 // expected export ordering:

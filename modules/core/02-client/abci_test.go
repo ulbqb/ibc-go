@@ -8,12 +8,12 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	client "github.com/cosmos/ibc-go/v4/modules/core/02-client"
-	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
-	"github.com/cosmos/ibc-go/v4/modules/core/exported"
-	ibctmtypes "github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
-	localhosttypes "github.com/cosmos/ibc-go/v4/modules/light-clients/09-localhost/types"
-	ibctesting "github.com/cosmos/ibc-go/v4/testing"
+	client "github.com/Finschia/ibc-go/v4/modules/core/02-client"
+	"github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
+	"github.com/Finschia/ibc-go/v4/modules/core/exported"
+	ibctmtypes "github.com/Finschia/ibc-go/v4/modules/light-clients/07-tendermint/types"
+	localhosttypes "github.com/Finschia/ibc-go/v4/modules/light-clients/09-localhost/types"
+	ibctesting "github.com/Finschia/ibc-go/v4/testing"
 )
 
 type ClientTestSuite struct {
