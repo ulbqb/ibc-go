@@ -3,9 +3,9 @@ package types_test
 import (
 	"time"
 
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"

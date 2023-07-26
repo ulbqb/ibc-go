@@ -7,7 +7,7 @@ import (
 	"github.com/Finschia/finschia-sdk/codec"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	"github.com/Finschia/ibc-go/v4/modules/core/exported"

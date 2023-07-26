@@ -6,7 +6,7 @@ import (
 	"github.com/Finschia/finschia-sdk/client"
 	"github.com/Finschia/finschia-sdk/codec"
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	"github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	commitmenttypes "github.com/Finschia/ibc-go/v4/modules/core/23-commitment/types"

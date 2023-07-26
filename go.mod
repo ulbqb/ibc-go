@@ -6,6 +6,7 @@ replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alp
 
 require (
 	github.com/Finschia/finschia-sdk v0.47.1-0.20230725074611-f8840edecbaa
+	github.com/Finschia/ostracon v1.1.0
 	github.com/armon/go-metrics v0.4.1
 	github.com/confio/ics23/go v0.9.0
 	github.com/gogo/protobuf v1.3.3
@@ -30,7 +31,6 @@ require (
 	filippo.io/edwards25519 v1.0.0 // indirect
 	github.com/99designs/keyring v1.1.6 // indirect
 	github.com/ChainSafe/go-schnorrkel v0.0.0-20200405005733-88cbf1b4c40d // indirect
-	github.com/Finschia/ostracon v1.1.0 // indirect
 	github.com/VictoriaMetrics/fastcache v1.12.1 // indirect
 	github.com/Workiva/go-datastructures v1.1.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect

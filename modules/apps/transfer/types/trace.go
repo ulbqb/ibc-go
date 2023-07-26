@@ -9,8 +9,8 @@ import (
 
 	sdk "github.com/Finschia/finschia-sdk/types"
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmbytes "github.com/Finschia/ostracon/libs/bytes"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	host "github.com/Finschia/ibc-go/v4/modules/core/24-host"
 )

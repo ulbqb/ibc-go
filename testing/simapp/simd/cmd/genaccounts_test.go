@@ -12,9 +12,9 @@ import (
 	"github.com/Finschia/finschia-sdk/types/module"
 	"github.com/Finschia/finschia-sdk/x/genutil"
 	genutiltest "github.com/Finschia/finschia-sdk/x/genutil/client/testutil"
+	"github.com/Finschia/ostracon/libs/log"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
-	"github.com/tendermint/tendermint/libs/log"
 
 	"github.com/Finschia/ibc-go/v4/testing/simapp"
 	simcmd "github.com/Finschia/ibc-go/v4/testing/simapp/simd/cmd"

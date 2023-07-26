@@ -3,8 +3,8 @@ package ica_test
 import (
 	"testing"
 
+	"github.com/Finschia/ostracon/libs/log"
 	"github.com/stretchr/testify/suite"
-	"github.com/tendermint/tendermint/libs/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 

@@ -9,6 +9,7 @@ import (
 
 	"github.com/Finschia/finschia-sdk/baseapp"
 	"github.com/Finschia/finschia-sdk/store"
+	"github.com/Finschia/finschia-sdk/store/cache"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	simtypes "github.com/Finschia/finschia-sdk/types/simulation"
 	authtypes "github.com/Finschia/finschia-sdk/x/auth/types"
@@ -23,9 +24,9 @@ import (
 	"github.com/Finschia/finschia-sdk/x/simulation"
 	slashingtypes "github.com/Finschia/finschia-sdk/x/slashing/types"
 	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
+	"github.com/Finschia/ostracon/libs/log"
 	"github.com/stretchr/testify/require"
 	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
@@ -54,7 +55,7 @@ func fauxMerkleModeOpt(bapp *baseapp.BaseApp) {
 // interBlockCacheOpt returns a BaseApp option function that sets the persistent
 // inter-block write-through cache.
 func interBlockCacheOpt() func(*baseapp.BaseApp) {
-	return baseapp.SetInterBlockCache(store.NewCommitKVStoreCacheManager())
+	return baseapp.SetInterBlockCache(store.NewCommitKVStoreCacheManager(cache.DefaultCommitKVStoreCacheSize, cache.NopMetricsProvider()))
 }
 
 func TestFullAppSimulation(t *testing.T) {

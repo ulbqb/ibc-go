@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	tmtypes "github.com/tendermint/tendermint/types"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	commitmenttypes "github.com/Finschia/ibc-go/v4/modules/core/23-commitment/types"

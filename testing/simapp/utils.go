@@ -10,7 +10,7 @@ import (
 	"github.com/Finschia/finschia-sdk/types/kv"
 	"github.com/Finschia/finschia-sdk/types/module"
 	simtypes "github.com/Finschia/finschia-sdk/types/simulation"
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/Finschia/ostracon/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/Finschia/ibc-go/v4/testing/simapp/helpers"

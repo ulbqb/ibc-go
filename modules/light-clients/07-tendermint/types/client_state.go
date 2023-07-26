@@ -7,9 +7,9 @@ import (
 	"github.com/Finschia/finschia-sdk/codec"
 	sdk "github.com/Finschia/finschia-sdk/types"
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	"github.com/Finschia/ostracon/light"
+	tmtypes "github.com/Finschia/ostracon/types"
 	ics23 "github.com/confio/ics23/go"
-	"github.com/tendermint/tendermint/light"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
 	connectiontypes "github.com/Finschia/ibc-go/v4/modules/core/03-connection/types"

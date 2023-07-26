@@ -5,7 +5,7 @@ import (
 	sdk "github.com/Finschia/finschia-sdk/types"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	paramtypes "github.com/Finschia/finschia-sdk/x/params/types"
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/Finschia/ostracon/libs/log"
 
 	"github.com/Finschia/ibc-go/v4/modules/apps/29-fee/types"
 	channeltypes "github.com/Finschia/ibc-go/v4/modules/core/04-channel/types"

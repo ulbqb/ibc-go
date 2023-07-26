@@ -9,7 +9,7 @@ import (
 	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 	capabilitykeeper "github.com/Finschia/finschia-sdk/x/capability/keeper"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/Finschia/ostracon/libs/log"
 	db "github.com/tendermint/tm-db"
 
 	clienttypes "github.com/Finschia/ibc-go/v4/modules/core/02-client/types"
