@@ -3,9 +3,9 @@ package v100_test
 import (
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
+	"github.com/Finschia/finschia-sdk/client"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
+	genutiltypes "github.com/Finschia/finschia-sdk/x/genutil/types"
 	"github.com/stretchr/testify/suite"
 	tmtypes "github.com/tendermint/tendermint/types"
 

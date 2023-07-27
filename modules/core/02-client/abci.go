@@ -1,7 +1,7 @@
 package client
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/keeper"
 	"github.com/cosmos/ibc-go/v4/modules/core/exported"

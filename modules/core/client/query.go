@@ -3,8 +3,8 @@ package client
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
+	"github.com/Finschia/finschia-sdk/client"
+	"github.com/Finschia/finschia-sdk/codec"
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"

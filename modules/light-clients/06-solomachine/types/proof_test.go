@@ -1,8 +1,8 @@
 package types_test
 
 import (
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/cosmos/cosmos-sdk/types/tx/signing"
+	cryptotypes "github.com/Finschia/finschia-sdk/crypto/types"
+	"github.com/Finschia/finschia-sdk/types/tx/signing"
 
 	"github.com/cosmos/ibc-go/v4/modules/light-clients/06-solomachine/types"
 	solomachinetypes "github.com/cosmos/ibc-go/v4/modules/light-clients/06-solomachine/types"

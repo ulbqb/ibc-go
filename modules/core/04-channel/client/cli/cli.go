@@ -1,7 +1,7 @@
 package cli
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/Finschia/finschia-sdk/client"
 	"github.com/spf13/cobra"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"

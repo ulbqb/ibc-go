@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/Finschia/finschia-sdk/baseapp"
+	sdk "github.com/Finschia/finschia-sdk/types"
 	"github.com/stretchr/testify/suite"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types"

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	channeltypes "github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"
 )
