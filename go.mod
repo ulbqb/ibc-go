@@ -2,7 +2,14 @@ go 1.20
 
 module github.com/cosmos/ibc-go/v4
 
-replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
+retract [v4.0.0, v4.1.0] // depends on SDK version without dragonberry fix
+
+retract (
+	[v4.0.0, v4.1.0] // depends on SDK version without dragonberry fix
+	v4.1.1 // contains huckleberry vulnerability
+	v4.2.0 // contains huckleberry vulnerability
+	v4.3.0 // contains huckleberry vulnerability
+)
 
 require (
 	github.com/Finschia/finschia-sdk v0.47.1-0.20230725074611-f8840edecbaa
@@ -130,3 +137,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	nhooyr.io/websocket v1.8.6 // indirect
 )
+
+replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1

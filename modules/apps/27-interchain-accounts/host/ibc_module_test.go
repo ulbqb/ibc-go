@@ -7,12 +7,8 @@ import (
 	sdk "github.com/Finschia/finschia-sdk/types"
 	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
 	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
-	"github.com/Finschia/ostracon/crypto"
 	"github.com/gogo/protobuf/proto"
 	"github.com/stretchr/testify/suite"
-	abcitypes "github.com/tendermint/tendermint/abci/types"
-	tmprotostate "github.com/tendermint/tendermint/proto/tendermint/state"
-	tmstate "github.com/tendermint/tendermint/state"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/types"
@@ -24,12 +20,6 @@ import (
 )
 
 var (
-	// TODO: Cosmos-SDK ADR-28: Update crypto.AddressHash() when sdk uses address.Module()
-	// https://github.com/cosmos/cosmos-sdk/issues/10225
-	//
-	// TestAccAddress defines a resuable bech32 address for testing purposes
-	TestAccAddress = icatypes.GenerateAddress(sdk.AccAddress(crypto.AddressHash([]byte(icatypes.ModuleName))), ibctesting.FirstConnectionID, TestPortID)
-
 	// TestOwnerAddress defines a reusable bech32 address for testing purposes
 	TestOwnerAddress = "link17dtl0mjt3t77kpuhg2edqzjpszulwhgzfu9afc"
 
@@ -151,6 +141,17 @@ func (suite *InterchainAccountsTestSuite) TestOnChanOpenTry() {
 			"success", func() {}, true,
 		},
 		{
+			"account address generation is block dependent", func() {
+				icaHostAccount := icatypes.GenerateUniqueAddress(suite.chainB.GetContext(), path.EndpointB.ConnectionID, path.EndpointA.ChannelConfig.PortID)
+				err := suite.chainB.GetSimApp().BankKeeper.SendCoins(suite.chainB.GetContext(), suite.chainB.SenderAccount.GetAddress(), icaHostAccount, sdk.Coins{sdk.NewCoin("stake", sdk.NewInt(1))})
+				suite.Require().NoError(err)
+				suite.Require().True(suite.chainB.GetSimApp().AccountKeeper.HasAccount(suite.chainB.GetContext(), icaHostAccount))
+
+				// ensure account registration is simulated in a separate block
+				suite.chainB.NextBlock()
+			}, true,
+		},
+		{
 			"host submodule disabled", func() {
 				suite.chainB.GetSimApp().ICAHostKeeper.SetParams(suite.chainB.GetContext(), types.NewParams(false, []string{}))
 			}, false,
@@ -216,6 +217,10 @@ func (suite *InterchainAccountsTestSuite) TestOnChanOpenTry() {
 
 			if tc.expPass {
 				suite.Require().NoError(err)
+
+				addr, exists := suite.chainB.GetSimApp().ICAHostKeeper.GetInterchainAccountAddress(suite.chainB.GetContext(), path.EndpointB.ConnectionID, counterparty.PortId)
+				suite.Require().True(exists)
+				suite.Require().NotNil(addr)
 			} else {
 				suite.Require().Error(err)
 				suite.Require().Equal("", version)
@@ -534,7 +539,7 @@ func (suite *InterchainAccountsTestSuite) TestOnAcknowledgementPacket() {
 				0,
 			)
 
-			err = cbs.OnAcknowledgementPacket(suite.chainB.GetContext(), packet, []byte("ackBytes"), TestAccAddress)
+			err = cbs.OnAcknowledgementPacket(suite.chainB.GetContext(), packet, []byte("ackBytes"), nil)
 
 			if tc.expPass {
 				suite.Require().NoError(err)
@@ -587,7 +592,7 @@ func (suite *InterchainAccountsTestSuite) TestOnTimeoutPacket() {
 				0,
 			)
 
-			err = cbs.OnTimeoutPacket(suite.chainA.GetContext(), packet, TestAccAddress)
+			err = cbs.OnTimeoutPacket(suite.chainA.GetContext(), packet, nil)
 
 			if tc.expPass {
 				suite.Require().NoError(err)
@@ -613,21 +618,28 @@ func (suite *InterchainAccountsTestSuite) fundICAWallet(ctx sdk.Context, portID 
 	suite.Require().NoError(err)
 }
 
-// TestControlAccountAfterChannelClose tests that a controller chain can control a registered interchain account after the currently active channel for that interchain account has been closed
-// by opening a new channel on the associated portID
+// TestControlAccountAfterChannelClose tests that a controller chain can control a registered interchain account after the currently active channel for that interchain account has been closed.
+// A new channel will be opened for the controller portID. The interchain account address should remain unchanged.
 func (suite *InterchainAccountsTestSuite) TestControlAccountAfterChannelClose() {
-	// create channel + init interchain account on a particular port
 	path := NewICAPath(suite.chainA, suite.chainB)
 	suite.coordinator.SetupConnections(path)
+
 	err := SetupICAPath(path, TestOwnerAddress)
 	suite.Require().NoError(err)
 
+	// two sends will be performed, one after initial creation of the account and one after channel closure and reopening
+	var (
+		startingBal           = sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(100000)))
+		tokenAmt              = sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(5000)))
+		expBalAfterFirstSend  = startingBal.Sub(tokenAmt)
+		expBalAfterSecondSend = expBalAfterFirstSend.Sub(tokenAmt)
+	)
+
 	// check that the account is working as expected
-	suite.fundICAWallet(suite.chainB.GetContext(), path.EndpointA.ChannelConfig.PortID, sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(10000))))
-	interchainAccountAddr, found := suite.chainB.GetSimApp().ICAHostKeeper.GetInterchainAccountAddress(suite.chainB.GetContext(), ibctesting.FirstConnectionID, path.EndpointA.ChannelConfig.PortID)
+	suite.fundICAWallet(suite.chainB.GetContext(), path.EndpointA.ChannelConfig.PortID, startingBal)
+	interchainAccountAddr, found := suite.chainB.GetSimApp().ICAHostKeeper.GetInterchainAccountAddress(suite.chainB.GetContext(), path.EndpointB.ConnectionID, path.EndpointA.ChannelConfig.PortID)
 	suite.Require().True(found)
 
-	tokenAmt := sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdk.NewInt(5000)))
 	msg := &banktypes.MsgSend{
 		FromAddress: interchainAccountAddr,
 		ToAddress:   suite.chainB.SenderAccount.GetAddress().String(),
@@ -661,8 +673,7 @@ func (suite *InterchainAccountsTestSuite) TestControlAccountAfterChannelClose() 
 	icaAddr, err := sdk.AccAddressFromBech32(interchainAccountAddr)
 	suite.Require().NoError(err)
 
-	hasBalance := suite.chainB.GetSimApp().BankKeeper.HasBalance(suite.chainB.GetContext(), icaAddr, sdk.Coin{Denom: sdk.DefaultBondDenom, Amount: sdk.NewInt(5000)})
-	suite.Require().True(hasBalance)
+	suite.assertBalance(icaAddr, expBalAfterFirstSend)
 
 	// close the channel
 	err = path.EndpointA.SetChannelClosed()
@@ -688,67 +699,12 @@ func (suite *InterchainAccountsTestSuite) TestControlAccountAfterChannelClose() 
 	err = path.RelayPacket(packetRelay)
 	suite.Require().NoError(err) // relay committed
 
-	// check that the ica balance is updated
-	hasBalance = suite.chainB.GetSimApp().BankKeeper.HasBalance(suite.chainB.GetContext(), icaAddr, sdk.Coin{Denom: sdk.DefaultBondDenom, Amount: sdk.NewInt(0)})
-	suite.Require().True(hasBalance)
+	suite.assertBalance(icaAddr, expBalAfterSecondSend)
 }
 
-// The safety of including SDK MsgResponses in the acknowledgement rests
-// on the inclusion of the abcitypes.ResponseDeliverTx.Data in the
-// abcitypes.ResposneDeliverTx hash. If the abcitypes.ResponseDeliverTx.Data
-// gets removed from consensus they must no longer be used in the packet
-// acknowledgement.
-//
-// This test acts as an indicator that the abcitypes.ResponseDeliverTx.Data
-// may no longer be deterministic.
-func (suite *InterchainAccountsTestSuite) TestABCICodeDeterminism() {
-	msgResponseBz, err := proto.Marshal(&channeltypes.MsgChannelOpenInitResponse{})
-	suite.Require().NoError(err)
-
-	msgData := &sdk.MsgData{
-		MsgType: sdk.MsgTypeURL(&channeltypes.MsgChannelOpenInit{}),
-		Data:    msgResponseBz,
-	}
-
-	txResponse, err := proto.Marshal(&sdk.TxMsgData{
-		Data: []*sdk.MsgData{msgData},
-	})
-	suite.Require().NoError(err)
-
-	deliverTx := abcitypes.ResponseDeliverTx{
-		Data: txResponse,
-	}
-	responses := tmprotostate.ABCIResponses{
-		DeliverTxs: []*abcitypes.ResponseDeliverTx{
-			&deliverTx,
-		},
-	}
-
-	differentMsgResponseBz, err := proto.Marshal(&channeltypes.MsgRecvPacketResponse{})
-	suite.Require().NoError(err)
-
-	differentMsgData := &sdk.MsgData{
-		MsgType: sdk.MsgTypeURL(&channeltypes.MsgRecvPacket{}),
-		Data:    differentMsgResponseBz,
-	}
-
-	differentTxResponse, err := proto.Marshal(&sdk.TxMsgData{
-		Data: []*sdk.MsgData{differentMsgData},
-	})
-	suite.Require().NoError(err)
-
-	differentDeliverTx := abcitypes.ResponseDeliverTx{
-		Data: differentTxResponse,
-	}
-
-	differentResponses := tmprotostate.ABCIResponses{
-		DeliverTxs: []*abcitypes.ResponseDeliverTx{
-			&differentDeliverTx,
-		},
-	}
-
-	hash := tmstate.ABCIResponsesResultsHash(&responses)
-	differentHash := tmstate.ABCIResponsesResultsHash(&differentResponses)
-
-	suite.Require().NotEqual(hash, differentHash)
+// assertBalance asserts that the provided address has exactly the expected balance.
+// CONTRACT: the expected balance must only contain one coin denom.
+func (suite *InterchainAccountsTestSuite) assertBalance(addr sdk.AccAddress, expBalance sdk.Coins) {
+	balance := suite.chainB.GetSimApp().BankKeeper.GetBalance(suite.chainB.GetContext(), addr, sdk.DefaultBondDenom)
+	suite.Require().Equal(expBalance[0], balance)
 }

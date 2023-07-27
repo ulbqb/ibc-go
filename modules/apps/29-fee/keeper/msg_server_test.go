@@ -2,18 +2,18 @@ package keeper_test
 
 import (
 	sdk "github.com/Finschia/finschia-sdk/types"
-	disttypes "github.com/Finschia/finschia-sdk/x/distribution/types"
+	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types"
+	transfertypes "github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	channeltypes "github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"
 	ibctesting "github.com/cosmos/ibc-go/v4/testing"
+	ibcmock "github.com/cosmos/ibc-go/v4/testing/mock"
 )
 
 func (suite *KeeperTestSuite) TestRegisterPayee() {
-	var (
-		msg *types.MsgRegisterPayee
-	)
+	var msg *types.MsgRegisterPayee
 
 	testCases := []struct {
 		name     string
@@ -37,6 +37,20 @@ func (suite *KeeperTestSuite) TestRegisterPayee() {
 			false,
 			func() {
 				suite.chainA.GetSimApp().IBCFeeKeeper.DeleteFeeEnabled(suite.chainA.GetContext(), suite.path.EndpointA.ChannelConfig.PortID, suite.path.EndpointA.ChannelID)
+			},
+		},
+		{
+			"given payee is not an sdk address",
+			false,
+			func() {
+				msg.Payee = "invalid-addr"
+			},
+		},
+		{
+			"payee is a blocked address",
+			false,
+			func() {
+				msg.Payee = suite.chainA.GetSimApp().AccountKeeper.GetModuleAddress(transfertypes.ModuleName).String()
 			},
 		},
 	}
@@ -185,9 +199,21 @@ func (suite *KeeperTestSuite) TestPayPacketFee() {
 			true,
 		},
 		{
+			"bank send enabled for fee denom",
+			func() {
+				suite.chainA.GetSimApp().BankKeeper.SetParams(suite.chainA.GetContext(),
+					banktypes.Params{
+						SendEnabled: []*banktypes.SendEnabled{{Denom: sdk.DefaultBondDenom, Enabled: true}},
+					},
+				)
+			},
+			true,
+		},
+		{
 			"refund account is module account",
 			func() {
-				msg.Signer = suite.chainA.GetSimApp().AccountKeeper.GetModuleAddress(disttypes.ModuleName).String()
+				suite.chainA.GetSimApp().BankKeeper.SendCoinsFromAccountToModule(suite.chainA.GetContext(), suite.chainA.SenderAccount.GetAddress(), ibcmock.ModuleName, fee.Total())
+				msg.Signer = suite.chainA.GetSimApp().AccountKeeper.GetModuleAddress(ibcmock.ModuleName).String()
 				expPacketFee := types.NewPacketFee(fee, msg.Signer, nil)
 				expFeesInEscrow = []types.PacketFee{expPacketFee}
 			},
@@ -219,6 +245,25 @@ func (suite *KeeperTestSuite) TestPayPacketFee() {
 			"refund account does not exist",
 			func() {
 				msg.Signer = suite.chainB.SenderAccount.GetAddress().String()
+			},
+			false,
+		},
+		{
+			"refund account is a blocked address",
+			func() {
+				blockedAddr := suite.chainA.GetSimApp().AccountKeeper.GetModuleAccount(suite.chainA.GetContext(), transfertypes.ModuleName).GetAddress()
+				msg.Signer = blockedAddr.String()
+			},
+			false,
+		},
+		{
+			"bank send disabled for fee denom",
+			func() {
+				suite.chainA.GetSimApp().BankKeeper.SetParams(suite.chainA.GetContext(),
+					banktypes.Params{
+						SendEnabled: []*banktypes.SendEnabled{{Denom: sdk.DefaultBondDenom, Enabled: false}},
+					},
+				)
 			},
 			false,
 		},
@@ -326,6 +371,17 @@ func (suite *KeeperTestSuite) TestPayPacketFeeAsync() {
 			true,
 		},
 		{
+			"bank send enabled for fee denom",
+			func() {
+				suite.chainA.GetSimApp().BankKeeper.SetParams(suite.chainA.GetContext(),
+					banktypes.Params{
+						SendEnabled: []*banktypes.SendEnabled{{Denom: sdk.DefaultBondDenom, Enabled: true}},
+					},
+				)
+			},
+			true,
+		},
+		{
 			"fee module is locked",
 			func() {
 				lockFeeModule(suite.chainA)
@@ -398,6 +454,25 @@ func (suite *KeeperTestSuite) TestPayPacketFeeAsync() {
 			"refund account does not exist",
 			func() {
 				msg.PacketFee.RefundAddress = suite.chainB.SenderAccount.GetAddress().String()
+			},
+			false,
+		},
+		{
+			"refund account is a blocked address",
+			func() {
+				blockedAddr := suite.chainA.GetSimApp().AccountKeeper.GetModuleAccount(suite.chainA.GetContext(), transfertypes.ModuleName).GetAddress()
+				msg.PacketFee.RefundAddress = blockedAddr.String()
+			},
+			false,
+		},
+		{
+			"bank send disabled for fee denom",
+			func() {
+				suite.chainA.GetSimApp().BankKeeper.SetParams(suite.chainA.GetContext(),
+					banktypes.Params{
+						SendEnabled: []*banktypes.SendEnabled{{Denom: sdk.DefaultBondDenom, Enabled: false}},
+					},
+				)
 			},
 			false,
 		},

@@ -111,15 +111,9 @@ func (im IBCModule) OnChanOpenTry(
 		return "", sdkerrors.Wrapf(types.ErrInvalidVersion, "invalid counterparty version: got: %s, expected %s", counterpartyVersion, types.Version)
 	}
 
-	// Module may have already claimed capability in OnChanOpenInit in the case of crossing hellos
-	// (ie chainA and chainB both call ChanOpenInit before one of them calls ChanOpenTry)
-	// If module can already authenticate the capability then module already owns it so we don't need to claim
-	// Otherwise, module does not have channel capability and we must claim it from IBC
-	if !im.keeper.AuthenticateCapability(ctx, chanCap, host.ChannelCapabilityPath(portID, channelID)) {
-		// Only claim channel capability passed back by IBC module if we do not already own it
-		if err := im.keeper.ClaimCapability(ctx, chanCap, host.ChannelCapabilityPath(portID, channelID)); err != nil {
-			return "", err
-		}
+	// OpenTry must claim the channelCapability that IBC passes into the callback
+	if err := im.keeper.ClaimCapability(ctx, chanCap, host.ChannelCapabilityPath(portID, channelID)); err != nil {
+		return "", err
 	}
 
 	return types.Version, nil
@@ -195,10 +189,12 @@ func (im IBCModule) OnRecvPacket(
 	}
 
 	eventAttributes := []sdk.Attribute{
+		sdk.NewAttribute(sdk.AttributeKeyModule, types.ModuleName),
 		sdk.NewAttribute(sdk.AttributeKeySender, data.Sender),
 		sdk.NewAttribute(types.AttributeKeyReceiver, data.Receiver),
 		sdk.NewAttribute(types.AttributeKeyDenom, data.Denom),
 		sdk.NewAttribute(types.AttributeKeyAmount, data.Amount),
+		sdk.NewAttribute(types.AttributeKeyMemo, data.Memo),
 		sdk.NewAttribute(types.AttributeKeyAckSuccess, fmt.Sprintf("%t", ack.Success())),
 	}
 
@@ -245,6 +241,7 @@ func (im IBCModule) OnAcknowledgementPacket(
 			sdk.NewAttribute(types.AttributeKeyReceiver, data.Receiver),
 			sdk.NewAttribute(types.AttributeKeyDenom, data.Denom),
 			sdk.NewAttribute(types.AttributeKeyAmount, data.Amount),
+			sdk.NewAttribute(types.AttributeKeyMemo, data.Memo),
 			sdk.NewAttribute(types.AttributeKeyAck, ack.String()),
 		),
 	)
@@ -291,6 +288,7 @@ func (im IBCModule) OnTimeoutPacket(
 			sdk.NewAttribute(types.AttributeKeyRefundReceiver, data.Sender),
 			sdk.NewAttribute(types.AttributeKeyRefundDenom, data.Denom),
 			sdk.NewAttribute(types.AttributeKeyRefundAmount, data.Amount),
+			sdk.NewAttribute(types.AttributeKeyMemo, data.Memo),
 		),
 	)
 
