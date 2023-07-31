@@ -3,8 +3,8 @@ package types
 import (
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	host "github.com/cosmos/ibc-go/v4/modules/core/24-host"
@@ -16,6 +16,7 @@ const (
 )
 
 // NewMsgTransfer creates a new MsgTransfer instance
+//
 //nolint:interfacer
 func NewMsgTransfer(
 	sourcePort, sourceChannel string,

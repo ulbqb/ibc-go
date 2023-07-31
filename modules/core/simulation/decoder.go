@@ -3,7 +3,7 @@ package simulation
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/types/kv"
+	"github.com/Finschia/finschia-sdk/types/kv"
 
 	clientsim "github.com/cosmos/ibc-go/v4/modules/core/02-client/simulation"
 	connectionsim "github.com/cosmos/ibc-go/v4/modules/core/03-connection/simulation"

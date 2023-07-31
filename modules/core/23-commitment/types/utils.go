@@ -1,8 +1,8 @@
 package types
 
 import (
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 	ics23 "github.com/confio/ics23/go"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	crypto "github.com/tendermint/tendermint/proto/tendermint/crypto"
 )
 
