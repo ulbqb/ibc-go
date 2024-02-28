@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/x/simulation"
+	simtypes "github.com/Finschia/finschia-sdk/types/simulation"
+	"github.com/Finschia/finschia-sdk/x/simulation"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )
 

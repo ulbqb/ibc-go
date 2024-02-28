@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 	"github.com/stretchr/testify/suite"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/controller/types"
@@ -19,7 +19,7 @@ import (
 
 var (
 	// TestOwnerAddress defines a reusable bech32 address for testing purposes
-	TestOwnerAddress = "cosmos17dtl0mjt3t77kpuhg2edqzjpszulwhgzuj9ljs"
+	TestOwnerAddress = "link17dtl0mjt3t77kpuhg2edqzjpszulwhgzfu9afc"
 
 	// TestPortID defines a resuable port identifier for testing purposes
 	TestPortID, _ = icatypes.NewControllerPortID(TestOwnerAddress)

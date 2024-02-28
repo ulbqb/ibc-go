@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types"
 	channeltypes "github.com/cosmos/ibc-go/v4/modules/core/04-channel/types"

@@ -6,9 +6,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	connectiontypes "github.com/cosmos/ibc-go/v4/modules/core/03-connection/types"

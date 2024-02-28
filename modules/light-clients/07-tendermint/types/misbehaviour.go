@@ -3,9 +3,9 @@ package types
 import (
 	"time"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	tmtypes "github.com/Finschia/ostracon/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	host "github.com/cosmos/ibc-go/v4/modules/core/24-host"

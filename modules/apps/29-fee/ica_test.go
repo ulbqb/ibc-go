@@ -1,9 +1,9 @@
 package fee_test
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	banktypes "github.com/Finschia/finschia-sdk/x/bank/types"
+	stakingtypes "github.com/Finschia/finschia-sdk/x/staking/types"
 
 	icahosttypes "github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/host/types"
 	icatypes "github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/types"
@@ -15,7 +15,7 @@ import (
 
 var (
 	// defaultOwnerAddress defines a reusable bech32 address for testing purposes
-	defaultOwnerAddress = "cosmos17dtl0mjt3t77kpuhg2edqzjpszulwhgzuj9ljs"
+	defaultOwnerAddress = "link17dtl0mjt3t77kpuhg2edqzjpszulwhgzfu9afc"
 
 	// defaultPortID defines a resuable port identifier for testing purposes
 	defaultPortID, _ = icatypes.NewControllerPortID(defaultOwnerAddress)

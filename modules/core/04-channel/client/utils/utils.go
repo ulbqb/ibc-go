@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/binary"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/Finschia/finschia-sdk/client"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	clientutils "github.com/cosmos/ibc-go/v4/modules/core/02-client/client/utils"
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"

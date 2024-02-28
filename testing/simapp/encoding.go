@@ -1,7 +1,7 @@
 package simapp
 
 import (
-	"github.com/cosmos/cosmos-sdk/std"
+	"github.com/Finschia/finschia-sdk/std"
 
 	simappparams "github.com/cosmos/ibc-go/v4/testing/simapp/params"
 )

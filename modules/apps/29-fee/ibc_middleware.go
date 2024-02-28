@@ -3,9 +3,9 @@ package fee
 import (
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/keeper"
 	"github.com/cosmos/ibc-go/v4/modules/apps/29-fee/types"

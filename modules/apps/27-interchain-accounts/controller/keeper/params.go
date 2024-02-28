@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/27-interchain-accounts/controller/types"
 )

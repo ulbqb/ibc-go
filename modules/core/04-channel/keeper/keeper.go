@@ -4,12 +4,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
-	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
-	"github.com/tendermint/tendermint/libs/log"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	capabilitykeeper "github.com/Finschia/finschia-sdk/x/capability/keeper"
+	capabilitytypes "github.com/Finschia/finschia-sdk/x/capability/types"
+	"github.com/Finschia/ostracon/libs/log"
 	db "github.com/tendermint/tm-db"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"

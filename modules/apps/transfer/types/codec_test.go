@@ -3,7 +3,7 @@ package types_test
 import (
 	"strings"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/apps/transfer/types"
 )

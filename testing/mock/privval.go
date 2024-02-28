@@ -1,12 +1,12 @@
 package mock
 
 import (
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/tendermint/tendermint/crypto"
+	cryptocodec "github.com/Finschia/finschia-sdk/crypto/codec"
+	"github.com/Finschia/finschia-sdk/crypto/keys/ed25519"
+	cryptotypes "github.com/Finschia/finschia-sdk/crypto/types"
+	"github.com/Finschia/ostracon/crypto"
+	tmtypes "github.com/Finschia/ostracon/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 )
 
 var _ tmtypes.PrivValidator = PV{}
@@ -23,7 +23,7 @@ func NewPV() PV {
 
 // GetPubKey implements PrivValidator interface
 func (pv PV) GetPubKey() (crypto.PubKey, error) {
-	return cryptocodec.ToTmPubKeyInterface(pv.PrivKey.PubKey())
+	return cryptocodec.ToOcPubKeyInterface(pv.PrivKey.PubKey())
 }
 
 // SignVote implements PrivValidator interface
@@ -46,4 +46,8 @@ func (pv PV) SignProposal(chainID string, proposal *tmproto.Proposal) error {
 	}
 	proposal.Signature = sig
 	return nil
+}
+
+func (pv PV) GenerateVRFProof(message []byte) (crypto.Proof, error) {
+	return nil, nil
 }

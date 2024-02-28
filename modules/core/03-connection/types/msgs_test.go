@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/store/iavl"
-	"github.com/cosmos/cosmos-sdk/store/rootmulti"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
+	"github.com/Finschia/finschia-sdk/store/iavl"
+	"github.com/Finschia/finschia-sdk/store/rootmulti"
+	storetypes "github.com/Finschia/finschia-sdk/store/types"
+	"github.com/Finschia/ostracon/libs/log"
 	"github.com/stretchr/testify/suite"
 	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
@@ -22,7 +22,7 @@ import (
 )
 
 var (
-	signer = "cosmos1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcw3n2lht"
+	signer = "link1ckgw5d7jfj7wwxjzs9fdrdev9vc8dzcwya2avr"
 
 	emptyPrefix = commitmenttypes.MerklePrefix{}
 	emptyProof  = []byte{}

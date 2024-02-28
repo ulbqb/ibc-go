@@ -5,11 +5,11 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/tendermint/tendermint/light"
-	tmtypes "github.com/tendermint/tendermint/types"
+	"github.com/Finschia/finschia-sdk/codec"
+	sdk "github.com/Finschia/finschia-sdk/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
+	"github.com/Finschia/ostracon/light"
+	tmtypes "github.com/Finschia/ostracon/types"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	commitmenttypes "github.com/cosmos/ibc-go/v4/modules/core/23-commitment/types"

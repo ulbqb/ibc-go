@@ -3,10 +3,10 @@ package types_test
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
+	"github.com/Finschia/finschia-sdk/codec"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
+	govtypes "github.com/Finschia/finschia-sdk/x/gov/types"
+	upgradetypes "github.com/Finschia/finschia-sdk/x/upgrade/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	ibctmtypes "github.com/cosmos/ibc-go/v4/modules/light-clients/07-tendermint/types"
@@ -210,7 +210,7 @@ func (suite *TypesTestSuite) TestUpgradeString() {
 	proposal, err := types.NewUpgradeProposal(ibctesting.Title, ibctesting.Description, plan, &ibctmtypes.ClientState{})
 	suite.Require().NoError(err)
 
-	expect := fmt.Sprintf("IBC Upgrade Proposal\n  Title: title\n  Description: description\n  Upgrade Plan\n  Name: ibc upgrade\n  height: 1000\n  Info: https://foo.bar/baz.\n  Upgraded IBC Client: %s", &ibctmtypes.ClientState{})
+	expect := fmt.Sprintf("IBC Upgrade Proposal\n  Title: title\n  Description: description\n  Upgrade Plan\n  Name: ibc upgrade\n  Height: 1000\n  Info: https://foo.bar/baz.\n  Upgraded IBC Client: %s", &ibctmtypes.ClientState{})
 
 	suite.Require().Equal(expect, proposal.String())
 }

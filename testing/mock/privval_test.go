@@ -3,9 +3,9 @@ package mock_test
 import (
 	"testing"
 
+	tmtypes "github.com/Finschia/ostracon/types"
 	"github.com/stretchr/testify/require"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 
 	"github.com/cosmos/ibc-go/v4/testing/mock"
 )

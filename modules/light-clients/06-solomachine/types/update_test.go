@@ -1,8 +1,8 @@
 package types_test
 
 import (
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	codectypes "github.com/Finschia/finschia-sdk/codec/types"
+	sdk "github.com/Finschia/finschia-sdk/types"
 
 	"github.com/cosmos/ibc-go/v4/modules/core/exported"
 	"github.com/cosmos/ibc-go/v4/modules/light-clients/06-solomachine/types"

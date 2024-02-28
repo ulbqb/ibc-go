@@ -3,8 +3,8 @@ package types
 import (
 	"strings"
 
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	cryptotypes "github.com/Finschia/finschia-sdk/crypto/types"
+	sdkerrors "github.com/Finschia/finschia-sdk/types/errors"
 
 	clienttypes "github.com/cosmos/ibc-go/v4/modules/core/02-client/types"
 	"github.com/cosmos/ibc-go/v4/modules/core/exported"
